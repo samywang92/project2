@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "3055",
-    "database": "icebreak-r",
+    "password": null,
+    "database": "icebreak_r_test",
     "host": "localhost",
     "dialect": "mysql"
   },
@@ -15,7 +15,7 @@
     "logging": false
   },
   "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "use_env_variable": "icebreak_r",
     "dialect": "mysql"
   }
 }
