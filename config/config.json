@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "icebreak_r_test2",
+    "database": "icebreak_r_test",
     "host": "localhost",
     "dialect": "mysql"
   },
