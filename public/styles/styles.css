@@ -1,3 +1,6 @@
 .list-group-item {
   line-height: 2.5;
 }
+.chat-body {
+  background-color:blue;
+}
