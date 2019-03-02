@@ -4,3 +4,41 @@
 .chat-body {
   background-color:blue;
 }
+
+.card.horizontal .card-image img {
+  border-radius: 2px 0 0 2px;
+  max-width: 100%;
+  width: auto;
+}
+.row.from-chat {
+  margin-left: -25px;
+}
+.row.too-chat {
+  margin-right: -25px;
+}
+.card-image img {
+  min-width: 70px;
+}
+
+.fixed-action-btn {
+  position: absolute;
+  right: 23px;
+  bottom: -27px;
+  padding-top: 15px;
+  margin-bottom: 0;
+  z-index: 997;
+}
+#chat-page {
+  background: rgb(2,0,36);
+background: linear-gradient(48deg, rgba(2,0,36,1) 0%, rgba(102,253,202,1) 0%, rgba(0,212,255,1) 100%);
+/* height: 100vh; */
+}
+div#chat-input {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9000;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
