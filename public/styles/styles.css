@@ -32,7 +32,7 @@
 }
 #chat-page {
   background: rgb(2,0,36);
-  background: linear-gradient(48deg, rgba(2,0,36,1) 0%, rgba(102,253,202,1) 0%, rgba(0,212,255,1) 100%);
+  background: linear-gradient(48deg, rgb(107, 205, 235) ,rgb(3, 110, 180));
   padding-bottom: 150px;
 }
 #chat-input {
@@ -45,8 +45,8 @@
   padding-bottom: 0;
 }
 .logged-out .card.horizontal {
-  background-color: #b8dde4;
-  color: #8eb3bb;
+  background-color: #74bcef;
+  color: #378abd;
 }
 .too-chat .col .card.horizontal {
   border-radius: 30px 0 0 30px;
@@ -54,4 +54,29 @@
 
 .from-chat .col .card.horizontal {
   border-radius: 0 30px 30px 0;
+}
+
+a.btn-floating.btn-large.options-btn  {
+  background: linear-gradient(to right, #FFCD57 ,#FF9857);
+}
+.incoming-question {
+  padding:0 10%;
+  background: linear-gradient(to right, #FFCD57 ,#FF9857);
+}
+.incoming-question .card {
+  background-color: transparent!important;
+  border: none;
+}
+.incoming-question .card .card-content {
+  box-shadow: none;
+}
+.guesses {
+  min-height:100px;
+  background-color:#fff;
+  border-radius: 20px;
+  padding:2%;
+  margin:3%;
+}
+.vote-icon {
+  width:40px;
 }
