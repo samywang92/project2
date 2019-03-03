@@ -13,10 +13,7 @@ module.exports = function(app) {
 
   app.get("/chat", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
-      res.render("group_chat", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
+      res.render("group_chat", {});
     });
   });
 
