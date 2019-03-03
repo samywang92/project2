@@ -6,15 +6,17 @@
 }
 
 .card.horizontal .card-image img {
-  border-radius: 2px 0 0 2px;
   max-width: 100%;
   width: auto;
 }
+.from-chat .col, .too-chat .col {
+  padding: 0;
+}
 .row.from-chat {
-  margin-left: -25px;
+  padding-right: 10%;
 }
 .row.too-chat {
-  margin-right: -25px;
+  padding-left:10%;
 }
 .card-image img {
   min-width: 70px;
@@ -30,10 +32,10 @@
 }
 #chat-page {
   background: rgb(2,0,36);
-background: linear-gradient(48deg, rgba(2,0,36,1) 0%, rgba(102,253,202,1) 0%, rgba(0,212,255,1) 100%);
-/* height: 100vh; */
+  background: linear-gradient(48deg, rgba(2,0,36,1) 0%, rgba(102,253,202,1) 0%, rgba(0,212,255,1) 100%);
+  padding-bottom: 150px;
 }
-div#chat-input {
+#chat-input {
   background-color: #fff;
   position: fixed;
   bottom: 0;
@@ -41,4 +43,15 @@ div#chat-input {
   z-index: 9000;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+.logged-out .card.horizontal {
+  background-color: #b8dde4;
+  color: #8eb3bb;
+}
+.too-chat .col .card.horizontal {
+  border-radius: 30px 0 0 30px;
+}
+
+.from-chat .col .card.horizontal {
+  border-radius: 0 30px 30px 0;
 }
