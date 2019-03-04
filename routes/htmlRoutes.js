@@ -19,6 +19,12 @@ module.exports = function (app) {
       res.render("profile", {});
     });
   });
+  // Group page
+  app.get("/group", function (req, res) {
+    db.Example.findAll({}).then(function (icebreak_r_test) {
+      res.render("group", {});
+    });
+  });
   // socializing options page
   app.get("/option", function (req, res) {
     db.Example.findAll({}).then(function (icebreak_r_test) {
