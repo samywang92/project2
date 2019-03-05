@@ -35,6 +35,7 @@ $(document).ready(function () {
     var mylon;
     var trigger = true;
     var message = "";
+    var userID;
 
     //////////// generate random nickname ////////////////////
     var generate = function () {
@@ -64,7 +65,8 @@ $(document).ready(function () {
             console.log(result.user);
             userEmail = user.email;
             stageName = user.displayName;
-            console.log(user.email);
+            userID = user.uid;
+            console.log(user.uid);
             // checkUserBeforeCreating(result.user.email);
 
 
@@ -72,9 +74,10 @@ $(document).ready(function () {
                 actualName: result.user.displayName,
                 displayName: nickname,
                 email: result.user.email,
-                picture: randomItem
+                picture: randomItem,
+                userID: result.user.uid
             };
-            console.log(newPost);
+            console.log("sql"+newPost);
             submitPost(newPost);
 
         }).catch(function (err) {
@@ -123,6 +126,7 @@ $(document).ready(function () {
             Usersnickname = data.displayName;
             UsersPicture = data.picture;
             chatEmail = data.email;
+            userID = data.userID;
             $(".avator").attr("src", data.picture);
             $("#displayName").html(data.displayName);
             //   $('#actualName').append('<span id="add_here" style ="color: black;>' + data.actualName + '</span>');
@@ -257,7 +261,8 @@ $(document).ready(function () {
             lon: mylon,
             lat: mylat,
             email: chatEmail,
-            picture: UsersPicture
+            picture: UsersPicture,
+            uid: userID
         };
 
         database.ref().push(newUser);
@@ -342,7 +347,7 @@ $(document).ready(function () {
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="btn-floating blue">
+                                                <a id="msg-btn" class="btn-floating blue" data-uid="${snapshot.val().uid}">
                                                     <i class="material-icons">textsms</i>
                                                 </a>
                                             </li>
@@ -420,7 +425,40 @@ $(document).ready(function () {
     $('#backButton').click(function () {
         window.location.href = '../option';
     });
-
+    var db = firebase.database().ref('/');
+    $("body").on("click", "#msg-btn", function () {
+        console.log("ENTERED THE VOID");
+        console.log(this);
+        var user = $(this).attr('data-uid');
+        var curentUser = userID;
+        var threadName = user+curentUser;
+        firebase.database().ref("/").once("value").then(function (snapshot) {
+            if (snapshot.child(threadName).exists()) { // will need to check both dummys with an || statement
+                console.log("IT EXISTS");
+                var ref = firebase.database().ref(threadName);
+                ref.push({
+                    user_id1: curentUser,
+                    user_id2: user,
+                    message: "tester"
+                    //maybe add a field for undreaduser1 and unreaduser2
+                });
+                //set db ref to this instead of main db
+            } else {
+                console.log("IT NOT EXISTS");
+                db.update({
+                    [threadName]: {
+                        initMessage: {
+                            user_id1: curentUser,
+                            user_id2: user,
+                            message: "message"
+                            //maybe add a field for undreaduser1 and unreaduser2
+                        }
+                    }
+                });
+                console.log("created.")
+            }
+        });
+    });
 
 
 });
