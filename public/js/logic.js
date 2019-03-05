@@ -159,10 +159,13 @@ $(document).ready(function () {
             // console.log('user info :' + user.email);
             // console.log('user is Logged In!');
 
-            if (window.location.href === 'http://localhost:3000/option' || window.location.href === 'http://localhost:3000/chat') {
-                // console.log('you need to login');
+            // if (window.location.href === 'http://localhost:3000/option' || window.location.href === 'http://localhost:3000/chat') {
+            //     // console.log('you need to login');
 
-            } else {
+            // } else {
+            //     window.location.href = '../option';
+            // }
+            if(window.location.href === "http://localhost:3000/"){
                 window.location.href = '../option';
             }
             mysqlEmail = user.email;
