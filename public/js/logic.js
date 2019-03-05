@@ -119,7 +119,6 @@ $(document).ready(function () {
             categoryString = "/" + categoryString;
         }
         $.get("/api/posts" + categoryString, function (data) {
-
             // console.log("data Stored in mysql :", data.displayName);
             Usersnickname = data.displayName;
             UsersPicture = data.picture;
@@ -355,7 +354,7 @@ $(document).ready(function () {
                         </div>`
 
                 //  var messageTemplete = `<div class="row from-chat"> <div class="col s12"> <div class="card horizontal"> <div class="card-content"> <div class=""> <div class="col s9 m9"> <p style="color: #386895; font-size: 10px;">${snapshot.val().name}</p> <p>${snapshot.val().message}</p> </div> <div class="col s3 m3"> <div style=" height: 3.5em; width: 3.5em; "> <img src="${snapshot.val().picture}" style="width: 100%;"> </div> </div> </div> </div> </div> </div> </div>`
-                var userMessageTemp = ` <div class="row from-chat">
+                var userMessageTemp = ` <div class="row too-chat">
         <div class="col s12">
             <div class="card horizontal">
                 <div class="card-content">
