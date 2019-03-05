@@ -51,27 +51,20 @@ $(document).ready(function () {
     };
     generate();
 
+    var initFB = localStorage.getItem('gotToken');
+    if (initFB) {
+        firebase.auth().getRedirectResult().then(function (result) {
+            console.log("HELLO");
 
-
-
-
-
-    ///////////// Login //////////////////////////////////////
-    $('#login-btn').click(function () {
-        $('#preloader').removeClass('hide');
-        $('#login-btn').addClass('hide');
-        console.log('hello');
-
-        base_provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(base_provider).then(function (result) {
-
+            // This gives you a Google Access Token. You can use it to access the Google API.
             var token = result.credential.accessToken;
+
             // The signed-in user info.
             var user = result.user;
             console.log(result.user);
-
-            userEmail = result.user.email;
-            stageName = result.user.displayName;
+            userEmail = user.email;
+            stageName = user.displayName;
+            console.log(user.email);
             // checkUserBeforeCreating(result.user.email);
 
 
@@ -81,13 +74,32 @@ $(document).ready(function () {
                 email: result.user.email,
                 picture: randomItem
             };
+            console.log(newPost);
             submitPost(newPost);
 
         }).catch(function (err) {
             console.log(err)
             console.log('Failed to do');
-        })
+        });
+    }
+
+
+    ///////////// Login //////////////////////////////////////
+    $('#login-btn').click(function () {
+        $('#preloader').removeClass('hide');
+        $('#login-btn').addClass('hide');
+        console.log('hello');
+
+        base_provider = new firebase.auth.GoogleAuthProvider();
+
+        var gotToken = localStorage.getItem('gotToken') || false;
+        if (!gotToken) {
+            localStorage.setItem('gotToken', true);
+            firebase.auth().signInWithRedirect(base_provider);
+        }
+
     })
+
 
     ///////////////    Push user info to mysql     /////////////// 
     function submitPost(Post) {
@@ -155,6 +167,7 @@ $(document).ready(function () {
             }
             mysqlEmail = user.email;
             checkUser(mysqlEmail);
+            localStorage.clear();
         } else {
             // No user is signed in.
             console.log('user not logged in!');
