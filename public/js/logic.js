@@ -20,7 +20,7 @@ $(document).ready(function () {
     ///////// avriables /////////////////
     var nickname;
     var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg'];
-    var randomItem = avatarArr[Math.floor(Math.random()*avatarArr.length)];
+    var randomItem = avatarArr[Math.floor(Math.random() * avatarArr.length)];
     var userEmail = "thisIsAnEmail@gmaail.com";
     var stageName;
     var mysqlEmail;
@@ -159,6 +159,8 @@ $(document).ready(function () {
     ////////////////////// this function checks if the user is logged in, if not logged in take to login page ///////////////
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            $("#preloader").removeClass("hide");
+            $("#login-btn").addClass("hide");
             // console.log('user info :' + user.email);
             // console.log('user is Logged In!');
 
@@ -177,11 +179,16 @@ $(document).ready(function () {
         } else {
             // No user is signed in.
             console.log('user not logged in!');
+            $("#preloader").addClass("hide");
+            $("#login-btn").removeClass("hide");
             if (window.location.href === 'http://localhost:3000/') {
                 console.log('you need to login');
 
             } else {
+                //user logged in
                 window.location.href = '../';
+                $("#preloader").removeClass("hide");
+                $("#login-btn").addClass("hide");
             }
 
 
@@ -258,33 +265,33 @@ $(document).ready(function () {
     });
 
     function newMessage() {
-if($("#userMessage").val() !== ""){
-         
-        navigator.geolocation.getCurrentPosition(showPosition);
-        name = "tempName";
-        //name = $("#name-input").val();
-        message = $("#userMessage").val();
-        /////// Use form ong / lat for testing purpouses comments////
-        // mylat = $("#lat-input").val();
-        // mylon = $("#long-input").val();
-        console.log(message);
+        if ($("#userMessage").val() !== "") {
 
-        var newUser = {
-            name: Usersnickname,
-            message: message,
-            lon: mylon,
-            lat: mylat,
-            email: chatEmail,
-            picture: UsersPicture,
-            uid: userID
-        };
+            navigator.geolocation.getCurrentPosition(showPosition);
+            name = "tempName";
+            //name = $("#name-input").val();
+            message = $("#userMessage").val();
+            /////// Use form ong / lat for testing purpouses comments////
+            // mylat = $("#lat-input").val();
+            // mylon = $("#long-input").val();
+            console.log(message);
 
-        database.ref().push(newUser);
-        // Code for handling the push
-        displayMessage();
-        trigger = false;
-        $("#userMessage").val("");
-    }
+            var newUser = {
+                name: Usersnickname,
+                message: message,
+                lon: mylon,
+                lat: mylat,
+                email: chatEmail,
+                picture: UsersPicture,
+                uid: userID
+            };
+
+            database.ref().push(newUser);
+            // Code for handling the push
+            displayMessage();
+            trigger = false;
+            $("#userMessage").val("");
+        }
     }
 
     ///////////////////////// calc distance ///////////////////////////
