@@ -2,7 +2,7 @@
 
     <div class="section" id="chat-group">
         {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
+        <div id="hello" class="row from-chat">
 
             <div class="col s12 m12">
                 <span class="time-date">Date and time</span>
@@ -55,7 +55,7 @@
 
         </div>
         {{!-- -------------TOO CHAT--------- --}}
-        <div class="row too-chat">
+        <div class="row too-chat  ">
 
             <div class="col s12 m12">
                 <span class="time-date">Date and time</span>
@@ -79,7 +79,7 @@
 
         </div>
         {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
+        <div class="row from-chat ">
 
             <div class="col s12 m12">
                 <span class="time-date">Date and time</span>
@@ -132,7 +132,7 @@
 
         </div>
         {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
+        <div class="row from-chat ">
 
             <div class="col s12 m12">
                 <span class="time-date">Date and time</span>
@@ -186,7 +186,7 @@
         </div>
 
         {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
+      <div class="row from-chat ">
 
             <div class="col s12 m12 logged-out">
                 <span class="time-date">Date and time</span>
@@ -242,14 +242,12 @@
     </div>
     <!-- recieved Chat -->
 
-    <a id="backButton" class="btn-floating btn-medium waves-effect waves-light blue"><i
+    <a id="backButton" class="btn-floating btn-medium waves-effect waves-light blue" style="position:fixed; top: 0; left: 0;  margin-top:1em; margin-left: 1em;"><i
             class="material-icons">arrow_back</i></a>
 
     <div id="chat-group" style="padding-bottom: 8em;">
 
-        {{!-- <div id="chat-input">
-        <div class="row">
-            <form class="col s12"> --}}
+       
         <div class="form" style="z-index: 9999;">
             <div class="row" id="chat-input">
                 <div class="input-field col s10">
@@ -260,28 +258,10 @@
                         class="btn-floating btn-medium waves-effect waves-light #00e5ff cyan accent-3"><i
                             class="material-icons">message</i></a>
                 </div>
-                {{!-- <div class="input-field col s6">
-                        <i class="material-icons prefix">mode_edit</i>
-                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                        <label for="icon_prefix2">Say Something</label>
-                    </div> --}}
+              
             </div>
         </div>
-        {{!-- </form>
-        </div>
-        </div> --}}
+       
 
     </div>
-    {{!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'left',
-                hoverEnabled: false
-            });
-        });
-
-    //$(document).ready(function () {
-    //    $('input#input_text, textarea#textarea2').characterCounter();
-    //}); 
-    </script> --}}
+  

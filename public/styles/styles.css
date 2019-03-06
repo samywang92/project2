@@ -33,7 +33,7 @@
 #chat-page {
   background: rgb(2,0,36);
   background: linear-gradient(48deg, rgb(107, 205, 235) ,rgb(3, 110, 180));
-  padding-bottom: 150px;
+  
 }
 #chat-input {
   background-color: #fff;
