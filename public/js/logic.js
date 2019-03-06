@@ -20,7 +20,7 @@ $(document).ready(function () {
     ///////// avriables /////////////////
     var nickname;
     var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg'];
-    var randomItem = '../images/RandomAnimals_brown_bear.svg';
+    var randomItem = avatarArr[Math.floor(Math.random()*avatarArr.length)];
     var userEmail = "thisIsAnEmail@gmaail.com";
     var stageName;
     var mysqlEmail;
@@ -351,8 +351,8 @@ if($("#userMessage").val() !== ""){
                                                 </div>
                                             </div>
                                             <div class="col s8 m8">
-                                                <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
-                                                <p class=" width: 100%">${snapshot.val().message}</p>
+                                                <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                <p>${snapshot.val().message}</p>
                                             </div>
                         
                                         </div>
@@ -390,7 +390,7 @@ if($("#userMessage").val() !== ""){
                                                     </div>
                                                 </div>
                                                 <div class="col s8 m8">
-                                                    <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                    <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
                                                     <p>${snapshot.val().message}</p>
                                                 </div>
                         
