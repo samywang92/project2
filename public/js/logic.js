@@ -460,5 +460,81 @@ $(document).ready(function () {
         });
     });
 
+   // 88888888888888888888888888888  Chat Questions   88888888888888888888888888888
+   var q1Laurel = '';
+   var q1Yanny = '';
+   var q2Selection = '';
+   var q3Selection = '';
+   var q4Selection = '';
 
+   /////////////////////////////// question 1 /////////////////////////////////
+
+   $(".q1-btn").click(function (e) {
+       e.preventDefault();
+
+       // store information from questions
+       var q1Chosen = $(this).attr("value");
+       console.log(q1Chosen + " was selected")
+       //add to selected answer array
+       if (q1Chosen === "laurel") {
+           // grab user email and ID and push it to array
+           // $.get("/api/posts" + mysqlEmail, function (data) {
+           //     UsersPicture = data.picture;
+           // });
+
+           database.ref("/").once("value").then(function (snapshot) {
+               if (snapshot.child("question1")) {
+                   var tempdb = firebase.database().ref("question1");
+                   tempdb.child("")
+               } else{
+                   database.update({
+                       question1: {
+                           choise1:{
+                               
+                           },
+                           chose2:{
+
+                           }
+                       }
+                   })
+               }
+           })
+       }
+       if (q1Chosen === "yanny") {
+           // grab user email and ID and push it to array
+       }
+       // remove the ability to change answer
+       $(".q1-btn").remove();
+   });
+
+   database.ref().on("child_added", function(displaySnapshot) {
+      var pic = `<img src="${displaySnapshot.val().picture}" class="vote-icon responsive-img" >`;
+       $("#questionLaurel").append(pic);
+   });
+
+   /////////////////////////////// question 2 /////////////////////////////////
+   $('.q2-btn').click(function (e) {
+       e.preventDefault();
+       // set the selected value
+       q2Selection = $(this).text();
+       console.log(q2Selection);
+       // remove the ability to change answer
+       $('.q2-btn').remove();
+   })
+   /////////////////////////////// question 3 /////////////////////////////////
+   $('.q3-btn').click(function (e) {
+       e.preventDefault();
+       q3Selection = $(this).text();
+       console.log(q3Selection);
+       $('.q3-btn').remove();
+   })
+
+   /////////////////////////////// question 4 /////////////////////////////////
+   $('.q4-btn').click(function (e) {
+       e.preventDefault();
+       q4Selection = $(this).text();
+       console.log(q4Selection);
+       $('.q4-btn').remove();
+   });
+   // 88888888888888888888888888888  End Chat Questions   88888888888888888888888888888
 });
