@@ -65,8 +65,7 @@ module.exports = function (app) {
       actualName: req.body.actualName,
       displayName: req.body.displayName,
       email: req.body.email,
-      picture: req.body.picture,
-      userID: req.body.userID
+      picture: req.body.picture
     })
 
       .then(function (dbPost) {

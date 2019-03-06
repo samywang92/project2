@@ -27,12 +27,6 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1]
         }
-      },
-      userID: {
-        type: DataTypes.STRING,
-        validate: {
-          len: [1]
-        }
       }
     });
     return Post;
