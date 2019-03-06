@@ -19,8 +19,8 @@ $(document).ready(function () {
 
     ///////// avriables /////////////////
     var nickname;
-    var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/disc-jockey.png'];
-    var randomItem = avatarArr[Math.floor(Math.random() * avatarArr.length)];
+    var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg'];
+    var randomItem = '../images/RandomAnimals_brown_bear.svg';
     var userEmail = "thisIsAnEmail@gmaail.com";
     var stageName;
     var mysqlEmail;
@@ -72,12 +72,12 @@ $(document).ready(function () {
 
             var newPost = {
                 actualName: result.user.displayName,
-                displayName: nickname,
+                displayName: "testinging",
                 email: result.user.email,
                 picture: randomItem,
                 userID: result.user.uid
             };
-            console.log("sql"+newPost);
+            console.log("sql" + newPost);
             submitPost(newPost);
 
         }).catch(function (err) {
@@ -168,7 +168,7 @@ $(document).ready(function () {
             // } else {
             //     window.location.href = '../option';
             // }
-            if(window.location.href === "http://localhost:3000/"){
+            if (window.location.href === "http://localhost:3000/") {
                 window.location.href = '../option';
             }
             mysqlEmail = user.email;
@@ -246,6 +246,20 @@ $(document).ready(function () {
 
     $("#sendMessage").on("click", function (event) {
         event.preventDefault();
+        newMessage();
+    });
+    $(window).on('keydown', function (e) {
+        if (e.which == 13) {
+
+            newMessage();
+            return false;
+
+        }
+    });
+
+    function newMessage() {
+if($("#userMessage").val() !== ""){
+         
         navigator.geolocation.getCurrentPosition(showPosition);
         name = "tempName";
         //name = $("#name-input").val();
@@ -269,10 +283,9 @@ $(document).ready(function () {
         // Code for handling the push
         displayMessage();
         trigger = false;
-    });
-
-
-
+        $("#userMessage").val("");
+    }
+    }
 
     ///////////////////////// calc distance ///////////////////////////
     function distance(lat1, lon1, lat2, lon2, unit) {
@@ -307,78 +320,10 @@ $(document).ready(function () {
 
                 /////// calc distance ///////
                 distance(mylat, mylon, snapshot.val().lat, snapshot.val().lon, "M");
-                var messageTemplate = // ` <div id="chat-box"> <div class="row from-chat"> <div class="col s12"> <div class="card horizontal"> <div class="card-content"> <div class=""> <div class="col s3 m3" style= "margin-left: -1.5em; margin-right: 10px"> <div style=" height: 3.5em; width: 3.5em; "> <img src="${snapshot.val().picture}" style="width: 100%;"> </div> </div> <div class="col s9 m9"> <p style="color: #386895; font-size: 10px;">${snapshot.val().name}</p> <p>${snapshot.val().message}</p> </div> </div> </div> <div class="card-stacked"> <div class="fixed-action-btn"> <a class="btn-floating btn-medium red"> <i class="large material-icons">dehaze</i> </a> <ul style="margin-right: -2em;"> <li> <a class="btn-floating btn-small red"> <i class="material-icons">error</i> </a> </li> <li> <a class="btn-floating btn-small yellow darken-1"> <i class="material-icons">thumb_down</i> </a> </li> <li> <a class="btn-floating btn-small green"> <i class="material-icons">thumb_up</i> </a> </li> <li> <a class="btn-floating btn-small blue"> <i class="material-icons">textsms</i> </a> </li> </ul> </div> </div> </div> </div> </div>`
-                    ` <div id="chat-box">
-                    <div class="row from-chat">
-                        <div class="col s12">
-                            <div class="card horizontal">
-                                <div class="card-content">
-                                    <div class="">
-                                        <div class="col s4 m4">
-                                            <div class="card-image">
-                                                <img src="${snapshot.val().picture}" style="width: 100%;">
-                                            </div>
-                                        </div>
-                                        <div class="col s8 m8">
-                                            <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
-                                            <p>${snapshot.val().message}</p>
-                                        </div>
-                
-                                    </div>
-                                </div>
-                                <div class="card-stacked">
-                                    <div class="fixed-action-btn">
-                                        <a class="btn-floating btn-large red">
-                                            <i class="large material-icons">dehaze</i>
-                                        </a>
-                                        <ul>
-                                            <li> <a class="btn-floating red">
-                                                    <i class="material-icons">error</i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="btn-floating yellow darken-1">
-                                                    <i class="material-icons">thumb_down</i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="btn-floating green">
-                                                    <i class="material-icons">thumb_up</i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a id="msg-btn" class="btn-floating blue" data-uid="${snapshot.val().uid}">
-                                                    <i class="material-icons">textsms</i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                
-                            </div>
-                        </div>`
+
 
                 //  var messageTemplete = `<div class="row from-chat"> <div class="col s12"> <div class="card horizontal"> <div class="card-content"> <div class=""> <div class="col s9 m9"> <p style="color: #386895; font-size: 10px;">${snapshot.val().name}</p> <p>${snapshot.val().message}</p> </div> <div class="col s3 m3"> <div style=" height: 3.5em; width: 3.5em; "> <img src="${snapshot.val().picture}" style="width: 100%;"> </div> </div> </div> </div> </div> </div> </div>`
-                var userMessageTemp = ` <div class="row too-chat">
-        <div class="col s12">
-            <div class="card horizontal">
-                <div class="card-content">
-                    <div class="">
-                        <div class="col s4 m4">
-                            <div class="card-image">
-                                <img src="${snapshot.val().picture}" >
-                            </div>
-                        </div>
-                        <div class="col s8 m8">
-                            <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
-                            <p>${snapshot.val().message}</p>
-                        </div>
-    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`
+
                 // ` <div class="row from-chat" > <div class="col s12"> <div class="card horizontal"> <div class="card-content"> <div class=""> <div class="col s10 m10" style="overflow:hidden;"> <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p> <p>${snapshot.val().message}</p> </div> <div class="col s2 m2"> <div style=" height: 3.5em; width: 3.5em; "> <img src="${snapshot.val().picture}" style="width: 100%;"> </div> </div> </div> </div> </div> </div> </div>`
                 /////// display image if in rang ///////
                 if (mainDistance <= distLimit) {
@@ -388,18 +333,104 @@ $(document).ready(function () {
                         // console.log('they match');
 
                         if (window.location.href === 'http://localhost:3000/chat') {
+                            var text = "";
+                            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-                            $("#chat-group").append(userMessageTemp);
-                            window.scrollBy(0, 300);
+                            for (var i = 0; i < 5; i++) {
+                                text += possible.charAt(Math.floor(Math.random() * possible.length));
+                            }
+
+                            var userMessageTemp1 = ` <div id="chat-box" class="row too-chat chatAnimateLeft ${text}">
+                            <div class="col s12">
+                                <div class="card horizontal">
+                                    <div class="card-content">
+                                        <div class="">
+                                            <div class="col s4 m4">
+                                                <div class="card-image">
+                                                    <img src="${snapshot.val().picture}" >
+                                                </div>
+                                            </div>
+                                            <div class="col s8 m8">
+                                                <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                <p class=" width: 100%">${snapshot.val().message}</p>
+                                            </div>
+                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
+                            $("#chat-group").append(userMessageTemp1);
+
+                            window.scrollBy(0, 250);
+                            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, });
 
                         }
 
                     } else {
                         // console.log('no match');
                         if (window.location.href === 'http://localhost:3000/chat') {
+                            var text = "";
+                            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-                            $("#chat-group").append(messageTemplate);
-                            window.scrollBy(0, 300);
+                            for (var i = 0; i < 5; i++) {
+                                text += possible.charAt(Math.floor(Math.random() * possible.length));
+                            }
+
+                            var messageTemplate1 = // ` <div id="chat-box"> <div class="row from-chat"> <div class="col s12"> <div class="card horizontal"> <div class="card-content"> <div class=""> <div class="col s3 m3" style= "margin-left: -1.5em; margin-right: 10px"> <div style=" height: 3.5em; width: 3.5em; "> <img src="${snapshot.val().picture}" style="width: 100%;"> </div> </div> <div class="col s9 m9"> <p style="color: #386895; font-size: 10px;">${snapshot.val().name}</p> <p>${snapshot.val().message}</p> </div> </div> </div> <div class="card-stacked"> <div class="fixed-action-btn"> <a class="btn-floating btn-medium red"> <i class="large material-icons">dehaze</i> </a> <ul style="margin-right: -2em;"> <li> <a class="btn-floating btn-small red"> <i class="material-icons">error</i> </a> </li> <li> <a class="btn-floating btn-small yellow darken-1"> <i class="material-icons">thumb_down</i> </a> </li> <li> <a class="btn-floating btn-small green"> <i class="material-icons">thumb_up</i> </a> </li> <li> <a class="btn-floating btn-small blue"> <i class="material-icons">textsms</i> </a> </li> </ul> </div> </div> </div> </div> </div>`
+                                ` <div id="chat-box" class="chatAnimate ${text}">
+                            <div class="row from-chat">
+                                <div class="col s12">
+                                    <div class="card horizontal">
+                                        <div class="card-content">
+                                            <div class="">
+                                                <div class="col s4 m4">
+                                                    <div class="card-image">
+                                                        <img src="${snapshot.val().picture}" style="width: 100%;">
+                                                    </div>
+                                                </div>
+                                                <div class="col s8 m8">
+                                                    <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                    <p>${snapshot.val().message}</p>
+                                                </div>
+                        
+                                            </div>
+                                        </div>
+                                        <div class="card-stacked">
+                                            <div class="fixed-action-btn">
+                                                <a class="btn-floating btn-large " style=" background-image: linear-gradient(-90deg, #ffc107, #ff6f00);">
+                                                    <i class="large material-icons">dehaze</i>
+                                                </a>
+                                                <ul>
+                                                    <li> <a class="btn-floating red">
+                                                            <i class="material-icons">error</i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="btn-floating yellow darken-1">
+                                                            <i class="material-icons">thumb_down</i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="btn-floating green">
+                                                            <i class="material-icons">thumb_up</i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a id="msg-btn" class="btn-floating blue" data-uid="${snapshot.val().uid}">
+                                                            <i class="material-icons">textsms</i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                                </div>`
+
+                            $("#chat-group").append(messageTemplate1);
+                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
+                            window.scrollBy(0, 250);
 
                         }
 
@@ -431,7 +462,7 @@ $(document).ready(function () {
         console.log(this);
         var user = $(this).attr('data-uid');
         var curentUser = userID;
-        var threadName = user+curentUser;
+        var threadName = user + curentUser;
         firebase.database().ref("/").once("value").then(function (snapshot) {
             if (snapshot.child(threadName).exists()) { // will need to check both dummys with an || statement
                 console.log("IT EXISTS");
@@ -485,7 +516,9 @@ $(document).ready(function () {
            database.ref("/").once("value").then(function (snapshot) {
                if (snapshot.child("question1")) {
                    var tempdb = firebase.database().ref("question1");
-                   tempdb.child("")
+                   tempdb.child("question1").update({
+                       userImages: snapshot.val().picture
+                   })
                } else{
                    database.update({
                        question1: {
