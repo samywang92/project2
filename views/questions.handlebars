@@ -24,7 +24,7 @@
                                         <img src="images/RandomAnimals_fox.svg" class="vote-icon responsive-img">
 
                                     </div>
-                                    <a class="waves-effect waves-light btn">vote</a>
+                                    <a class="waves-effect waves-light btn q1-btn" value="laurel">vote</a>
                                 </div>
 
                             </div>
@@ -35,7 +35,7 @@
 
 
                                     </div>
-                                    <a class="waves-effect waves-light btn">vote</a>
+                                    <a class="waves-effect waves-light btn q1-btn" value="yanny">vote</a>
                                 </div>
                             </div>
                         </div>
@@ -55,30 +55,88 @@
 
                     <div class="">
                         <div class="row">
-                            <h4>First Impression; what color is this dress:
+                            <div class="col s12 m12 center">
+
+                                <div class=" guesses s12 m12">
+                                    <img src="images/whichBucket.png" class=" responsive-img">
+
+                                </div>
+                                <a class="waves-effect waves-light btn q2-btn">a</a>
+                                <a class="waves-effect waves-light btn q2-btn">b</a>
+                                <a class="waves-effect waves-light btn q2-btn">c</a>
+                                <a class="waves-effect waves-light btn q2-btn">d</a>
+                                <a class="waves-effect waves-light btn q2-btn">e</a>
+                                <a class="waves-effect waves-light btn q2-btn">f</a>
+                                <a class="waves-effect waves-light btn q2-btn">g</a>
+                                <a class="waves-effect waves-light btn q2-btn">h</a>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        {{!-- -------------Incoming question 3--------- --}}
+        <div class="row incoming-question">
+
+            <div class="col s12 m12">
+
+                <div class="horizontal">
+
+                    <div class="">
+                        <div class="row">
+                            <h4>Which licorice do you prefer:
                             </h4>
-                            <div class="col s6 m6 center">
-                                <h5>Laurel</h5>
-                                <div>
-                                    <div class="blue-dress guesses s12 m12">
-                                        <img src="images/RandomAnimals_panda.svg" class="vote-icon responsive-img">
-                                        <img src="images/RandomAnimals_fox.svg" class="vote-icon responsive-img">
+                            <div class="col s12 m12 center">
 
-                                    </div>
-                                    <a class="waves-effect waves-light btn">vote</a>
+                                <div class="licorice guesses s12 m12">
+                                    <img src="images/blackorred.png" class=" responsive-img">
+
                                 </div>
+                                <a class="waves-effect waves-light btn q3-btn">Black Licorice</a>
+                                <a class="waves-effect waves-light btn q3-btn">Red Licorice</a>
+
+
 
                             </div>
-                            <div class="col s6 m6 center">
-                                <h5>Yanny</h5>
-                                <div>
-                                    <div class="yanny guesses s12 m12">
 
+                        </div>
+                    </div>
 
-                                    </div>
-                                    <a class="waves-effect waves-light btn">vote</a>
+                </div>
+            </div>
+
+        </div>
+
+        {{!-- -------------Incoming question 4--------- --}}
+        <div class="row incoming-question">
+
+            <div class="col s12 m12">
+
+                <div class="horizontal">
+
+                    <div class="">
+                        <div class="row">
+                            <h4>What do you see?!!!
+                            </h4>
+                            <div class="col s12 m12 center">
+
+                                <div class="licorice guesses s12 m12">
+                                    <img src="images/twobatman.png" class=" responsive-img">
+
                                 </div>
+                                <a class="waves-effect waves-light btn q4-btn">Wolverine</a>
+                                <a class="waves-effect waves-light btn q4-btn">2 Batmen</a>
+
+
+
                             </div>
+
                         </div>
                     </div>
 
@@ -105,7 +163,10 @@
     </div>
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+    console.log("test");
+    console.log(token);
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.fixed-action-btn');
         var instances = M.FloatingActionButton.init(elems, {
@@ -114,7 +175,58 @@
         });
     });
 
-    //$(document).ready(function () {
-    //    $('input#input_text, textarea#textarea2').characterCounter();
-    //}); 
+    /////////////////////////////// question 1 /////////////////////////////////
+    $(document).ready(function () {
+        var q1Laurel = [];
+        var q1Yanny = [];
+        var q2Selection = '';
+        var q3Selection = '';
+        var q4Selection = '';
+        
+
+        $(".q1-btn").click(function (e) {
+            e.preventDefault();
+
+            // store information from questions
+            var q1Chosen = $(this).attr("value");
+            console.log(q1Chosen + " was selected")
+            //add to selected answer array
+            if (q1Chosen === "laurel") {
+                // grab user email and ID and push it to array
+
+            }
+            if (q1Chosen === "yanny") {
+                // grab user email and ID and push it to array
+            }
+            // remove the ability to change answer
+            $(".q1-btn").remove();
+        });
+
+        /////////////////////////////// question 2 /////////////////////////////////
+        $('.q2-btn').click(function (e) {
+            e.preventDefault();
+            // set the selected value
+            q2Selection = $(this).text();
+            console.log(q2Selection);
+            // remove the ability to change answer
+            $('.q2-btn').remove();
+        })
+        /////////////////////////////// question 3 /////////////////////////////////
+        $('.q3-btn').click(function (e) {
+            e.preventDefault();
+            q3Selection = $(this).text();
+            console.log(q3Selection);
+            $('.q3-btn').remove();
+        })
+
+        /////////////////////////////// question 4 /////////////////////////////////
+
+        $('.q4-btn').click(function (e) {
+            e.preventDefault();
+            q4Selection = $(this).text();
+            console.log(q4Selection);
+            $('.q4-btn').remove();
+        });
+    });
+
 </script>
