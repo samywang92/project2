@@ -80,3 +80,6 @@ a.btn-floating.btn-large.options-btn  {
 .vote-icon {
   width:40px;
 }
+.licorice.guesses {
+  background-color: transparent;
+}

@@ -1,84 +1,8 @@
 <div id="chat-page">
 
     <div class="section" id="chat-group">
-        {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
 
-            <div class="col s12 m12">
-                <span class="time-date">Date and time</span>
-                <div class="card horizontal">
-
-                    <div class="card-content">
-                        <div class="">
-                            <div class="col s3 m3">
-                                <div class="card-image">
-                                    <img src="images/RandomAnimals_zebra.svg">
-                                </div>
-                            </div>
-                            <div class="col s9 m9">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-stacked">
-
-                        <div class="fixed-action-btn">
-                            <a class="btn-floating btn-large options-btn">
-                                <i class="large material-icons">menu</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating blue">
-                                        <i class="material-icons">thumb_up</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow darken-1">
-                                        <i class="material-icons">message</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating green lighten-2">
-                                        <i class="material-icons">mail_outline</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating red darken-1">
-                                        <i class="material-icons">eject</i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        {{!-- -------------TOO CHAT--------- --}}
-        <div class="row too-chat">
-
-            <div class="col s12 m12">
-                <span class="time-date">Date and time</span>
-                <div class="card horizontal">
-
-                    <div class="card-content">
-                        <div class="">
-                            <div class="col s3 m3">
-                                <div class="card-image">
-                                    <img src="images/RandomAnimals_polar_bear.svg">
-                                </div>
-                            </div>
-                            <div class="col s9 m9">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-        {{!-- -------------Incoming question--------- --}}
+        {{!-- -------------Incoming question 1--------- --}}
         <div class="row incoming-question">
 
             <div class="col s12 m12">
@@ -95,23 +19,23 @@
                             <div class="col s6 m6 center">
                                 <h5>Laurel</h5>
                                 <div>
-                                <div class="laurel guesses s12 m12">
-<img src="images/RandomAnimals_panda.svg" class="vote-icon responsive-img">
-<img src="images/RandomAnimals_fox.svg" class="vote-icon responsive-img">
+                                    <div class="laurel guesses s12 m12">
+                                        <img src="images/RandomAnimals_panda.svg" class="vote-icon responsive-img">
+                                        <img src="images/RandomAnimals_fox.svg" class="vote-icon responsive-img">
 
-                                </div>
-                                <a class="waves-effect waves-light btn">vote</a>
+                                    </div>
+                                    <a class="waves-effect waves-light btn q1-btn" value="laurel">vote</a>
                                 </div>
 
                             </div>
                             <div class="col s6 m6 center">
                                 <h5>Yanny</h5>
                                 <div>
-                                <div class="yanny guesses s12 m12">
+                                    <div class="yanny guesses s12 m12">
 
 
-                                </div>
-                                <a class="waves-effect waves-light btn">vote</a>
+                                    </div>
+                                    <a class="waves-effect waves-light btn q1-btn" value="yanny">vote</a>
                                 </div>
                             </div>
                         </div>
@@ -121,113 +45,106 @@
             </div>
 
         </div>
-        {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
+
+        {{!-- -------------Incoming question 2--------- --}}
+        <div class="row incoming-question">
 
             <div class="col s12 m12">
-                <span class="time-date">Date and time</span>
-                <div class="card horizontal">
 
-                    <div class="card-content">
-                        <div class="">
-                            <div class="col s3 m3">
-                                <div class="card-image">
-                                    <img src="images/RandomAnimals_panda.svg">
+                <div class="horizontal">
+
+                    <div class="">
+                        <div class="row">
+                            <div class="col s12 m12 center">
+
+                                <div class=" guesses s12 m12">
+                                    <img src="images/whichBucket.png" class=" responsive-img">
+
                                 </div>
-                            </div>
-                            <div class="col s9 m9">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-stacked">
+                                <a class="waves-effect waves-light btn q2-btn">a</a>
+                                <a class="waves-effect waves-light btn q2-btn">b</a>
+                                <a class="waves-effect waves-light btn q2-btn">c</a>
+                                <a class="waves-effect waves-light btn q2-btn">d</a>
+                                <a class="waves-effect waves-light btn q2-btn">e</a>
+                                <a class="waves-effect waves-light btn q2-btn">f</a>
+                                <a class="waves-effect waves-light btn q2-btn">g</a>
+                                <a class="waves-effect waves-light btn q2-btn">h</a>
 
-                        <div class="fixed-action-btn">
-                            <a class="btn-floating btn-large red">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating red">
-                                        <i class="material-icons">insert_chart</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow darken-1">
-                                        <i class="material-icons">format_quote</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating green">
-                                        <i class="material-icons">publish</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating blue">
-                                        <i class="material-icons">attach_file</i>
-                                    </a>
-                                </li>
-                            </ul>
+
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
 
         </div>
 
-        {{!-- -------------FROM CHAT--------- --}}
-        <div class="row from-chat">
+        {{!-- -------------Incoming question 3--------- --}}
+        <div class="row incoming-question">
 
-            <div class="col s12 m12 logged-out">
-                <span class="time-date">Date and time</span>
-                <div class="card horizontal">
+            <div class="col s12 m12">
 
-                    <div class="card-content">
-                        <div class="">
-                            <div class="col s3 m3">
-                                <div class="card-image">
-                                    <img src="images/RandomAnimals_tiger.svg">
+                <div class="horizontal">
+
+                    <div class="">
+                        <div class="row">
+                            <h4>Which licorice do you prefer:
+                            </h4>
+                            <div class="col s12 m12 center">
+
+                                <div class="licorice guesses s12 m12">
+                                    <img src="images/blackorred.png" class=" responsive-img">
+
                                 </div>
-                            </div>
-                            <div class="col s9 m9">
-                                <p>I am a very simple card. I am good at containing small bits of information.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-stacked">
+                                <a class="waves-effect waves-light btn q3-btn">Black Licorice</a>
+                                <a class="waves-effect waves-light btn q3-btn">Red Licorice</a>
 
-                        <div class="fixed-action-btn">
-                            <a class="btn-floating btn-large red">
-                                <i class="large material-icons">mode_edit</i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a class="btn-floating red">
-                                        <i class="material-icons">insert_chart</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating yellow darken-1">
-                                        <i class="material-icons">format_quote</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating green">
-                                        <i class="material-icons">publish</i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn-floating blue">
-                                        <i class="material-icons">attach_file</i>
-                                    </a>
-                                </li>
-                            </ul>
+
+
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
 
         </div>
+
+        {{!-- -------------Incoming question 4--------- --}}
+        <div class="row incoming-question">
+
+            <div class="col s12 m12">
+
+                <div class="horizontal">
+
+                    <div class="">
+                        <div class="row">
+                            <h4>What do you see?!!!
+                            </h4>
+                            <div class="col s12 m12 center">
+
+                                <div class="licorice guesses s12 m12">
+                                    <img src="images/twobatman.png" class=" responsive-img">
+
+                                </div>
+                                <a class="waves-effect waves-light btn q4-btn">Wolverine</a>
+                                <a class="waves-effect waves-light btn q4-btn">2 Batmen</a>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -246,7 +163,10 @@
     </div>
 
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+    console.log("test");
+    console.log(token);
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.fixed-action-btn');
         var instances = M.FloatingActionButton.init(elems, {
@@ -255,7 +175,58 @@
         });
     });
 
-    //$(document).ready(function () {
-    //    $('input#input_text, textarea#textarea2').characterCounter();
-    //}); 
+    /////////////////////////////// question 1 /////////////////////////////////
+    $(document).ready(function () {
+        var q1Laurel = [];
+        var q1Yanny = [];
+        var q2Selection = '';
+        var q3Selection = '';
+        var q4Selection = '';
+        
+
+        $(".q1-btn").click(function (e) {
+            e.preventDefault();
+
+            // store information from questions
+            var q1Chosen = $(this).attr("value");
+            console.log(q1Chosen + " was selected")
+            //add to selected answer array
+            if (q1Chosen === "laurel") {
+                // grab user email and ID and push it to array
+
+            }
+            if (q1Chosen === "yanny") {
+                // grab user email and ID and push it to array
+            }
+            // remove the ability to change answer
+            $(".q1-btn").remove();
+        });
+
+        /////////////////////////////// question 2 /////////////////////////////////
+        $('.q2-btn').click(function (e) {
+            e.preventDefault();
+            // set the selected value
+            q2Selection = $(this).text();
+            console.log(q2Selection);
+            // remove the ability to change answer
+            $('.q2-btn').remove();
+        })
+        /////////////////////////////// question 3 /////////////////////////////////
+        $('.q3-btn').click(function (e) {
+            e.preventDefault();
+            q3Selection = $(this).text();
+            console.log(q3Selection);
+            $('.q3-btn').remove();
+        })
+
+        /////////////////////////////// question 4 /////////////////////////////////
+
+        $('.q4-btn').click(function (e) {
+            e.preventDefault();
+            q4Selection = $(this).text();
+            console.log(q4Selection);
+            $('.q4-btn').remove();
+        });
+    });
+
 </script>
