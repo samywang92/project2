@@ -174,6 +174,7 @@ $(document).ready(function () {
             mysqlEmail = user.email;
             checkUser(mysqlEmail);
             localStorage.clear();
+            console.log("first"+mysqlEmail);
         } else {
             // No user is signed in.
             console.log('user not logged in!');
@@ -428,6 +429,8 @@ $(document).ready(function () {
     var db = firebase.database().ref('/');
     $("body").on("click", "#msg-btn", function () {
         console.log("ENTERED THE VOID");
+        console.log("second"+mysqlEmail);
+        console.log("pls"+UsersPicture)
         console.log(this);
         var user = $(this).attr('data-uid');
         var curentUser = userID;
@@ -441,6 +444,9 @@ $(document).ready(function () {
                     user_id2: user,
                     message: "tester"
                     //maybe add a field for undreaduser1 and unreaduser2
+                });
+                ref.child("initMessage").update({
+                    user_id4: "foook"
                 });
                 //set db ref to this instead of main db
             } else {
