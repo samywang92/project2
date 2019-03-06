@@ -174,7 +174,7 @@ $(document).ready(function () {
             mysqlEmail = user.email;
             checkUser(mysqlEmail);
             localStorage.clear();
-            console.log("first"+mysqlEmail);
+            console.log("first" + mysqlEmail);
         } else {
             // No user is signed in.
             console.log('user not logged in!');
@@ -259,33 +259,33 @@ $(document).ready(function () {
     });
 
     function newMessage() {
-if($("#userMessage").val() !== ""){
-         
-        navigator.geolocation.getCurrentPosition(showPosition);
-        name = "tempName";
-        //name = $("#name-input").val();
-        message = $("#userMessage").val();
-        /////// Use form ong / lat for testing purpouses comments////
-        // mylat = $("#lat-input").val();
-        // mylon = $("#long-input").val();
-        console.log(message);
+        if ($("#userMessage").val() !== "") {
 
-        var newUser = {
-            name: Usersnickname,
-            message: message,
-            lon: mylon,
-            lat: mylat,
-            email: chatEmail,
-            picture: UsersPicture,
-            uid: userID
-        };
+            navigator.geolocation.getCurrentPosition(showPosition);
+            name = "tempName";
+            //name = $("#name-input").val();
+            message = $("#userMessage").val();
+            /////// Use form ong / lat for testing purpouses comments////
+            // mylat = $("#lat-input").val();
+            // mylon = $("#long-input").val();
+            console.log(message);
 
-        database.ref().push(newUser);
-        // Code for handling the push
-        displayMessage();
-        trigger = false;
-        $("#userMessage").val("");
-    }
+            var newUser = {
+                name: Usersnickname,
+                message: message,
+                lon: mylon,
+                lat: mylat,
+                email: chatEmail,
+                picture: UsersPicture,
+                uid: userID
+            };
+
+            database.ref().push(newUser);
+            // Code for handling the push
+            displayMessage();
+            trigger = false;
+            $("#userMessage").val("");
+        }
     }
 
     ///////////////////////// calc distance ///////////////////////////
@@ -460,14 +460,15 @@ if($("#userMessage").val() !== ""){
     var db = firebase.database().ref('/');
     $("body").on("click", "#msg-btn", function () {
         console.log("ENTERED THE VOID");
-        console.log("second"+mysqlEmail);
-        console.log("pls"+UsersPicture)
+        console.log("second" + mysqlEmail);
+        console.log("pls" + UsersPicture)
         console.log(this);
         var user = $(this).attr('data-uid');
         var curentUser = userID;
         var threadName = user + curentUser;
+        var posthreadName = currentUser + user;
         firebase.database().ref("/").once("value").then(function (snapshot) {
-            if (snapshot.child(threadName).exists()) { // will need to check both dummys with an || statement
+            if (snapshot.child(threadName).exists() || snapshot.child(posthreadName).exists()) { // will need to check both dummys with an || statement
                 console.log("IT EXISTS");
                 var ref = firebase.database().ref(threadName);
                 ref.push({
@@ -492,6 +493,18 @@ if($("#userMessage").val() !== ""){
                         }
                     }
                 });
+                var oneOnThread = firebase.database().ref("1on1");
+                oneOnThread.push(
+                    {
+                        user_id1: {
+                            [threadName]:  [threadName]
+                        },
+                        user_id2: {
+                            [threadName]:  [threadName]
+                        }
+            
+                    }
+                );
                 console.log("created.")
             }
         });
