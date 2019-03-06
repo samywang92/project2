@@ -83,3 +83,11 @@ a.btn-floating.btn-large.options-btn  {
 .licorice.guesses {
   background-color: transparent;
 }
+#login-logo {
+  margin-top: 4em;
+}
+html, body {
+  margin: 0;
+  height: 100%;
+  background: linear-gradient(to right, rgb(107, 205, 235) ,rgb(3, 110, 180));
+}
