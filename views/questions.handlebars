@@ -19,10 +19,8 @@
                             <div class="col s6 m6 center">
                                 <h5>Laurel</h5>
                                 <div>
-                                    <div class="laurel guesses s12 m12">
-                                        <img src="images/RandomAnimals_panda.svg" class="vote-icon responsive-img">
-                                        <img src="images/RandomAnimals_fox.svg" class="vote-icon responsive-img">
-
+                                    <div id="questionLaurel" class="laurel guesses s12 m12">
+                                        
                                     </div>
                                     <a class="waves-effect waves-light btn q1-btn" value="laurel">vote</a>
                                 </div>
@@ -31,7 +29,7 @@
                             <div class="col s6 m6 center">
                                 <h5>Yanny</h5>
                                 <div>
-                                    <div class="yanny guesses s12 m12">
+                                    <div id="questionYanny" class="yanny guesses s12 m12">
 
 
                                     </div>
@@ -165,67 +163,11 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    console.log("test");
-
     document.addEventListener('DOMContentLoaded', function () {
         var elems = document.querySelectorAll('.fixed-action-btn');
         var instances = M.FloatingActionButton.init(elems, {
             direction: 'left',
             hoverEnabled: false
-        });
-    });
-
-    /////////////////////////////// question 1 /////////////////////////////////
-    $(document).ready(function () {
-        var q1Laurel = [];
-        var q1Yanny = [];
-        var q2Selection = '';
-        var q3Selection = '';
-        var q4Selection = '';
-        
-
-        $(".q1-btn").click(function (e) {
-            e.preventDefault();
-
-            // store information from questions
-            var q1Chosen = $(this).attr("value");
-            console.log(q1Chosen + " was selected")
-            //add to selected answer array
-            if (q1Chosen === "laurel") {
-                // grab user email and ID and push it to array
-
-            }
-            if (q1Chosen === "yanny") {
-                // grab user email and ID and push it to array
-            }
-            // remove the ability to change answer
-            $(".q1-btn").remove();
-        });
-
-        /////////////////////////////// question 2 /////////////////////////////////
-        $('.q2-btn').click(function (e) {
-            e.preventDefault();
-            // set the selected value
-            q2Selection = $(this).text();
-            console.log(q2Selection);
-            // remove the ability to change answer
-            $('.q2-btn').remove();
-        })
-        /////////////////////////////// question 3 /////////////////////////////////
-        $('.q3-btn').click(function (e) {
-            e.preventDefault();
-            q3Selection = $(this).text();
-            console.log(q3Selection);
-            $('.q3-btn').remove();
-        })
-
-        /////////////////////////////// question 4 /////////////////////////////////
-
-        $('.q4-btn').click(function (e) {
-            e.preventDefault();
-            q4Selection = $(this).text();
-            console.log(q4Selection);
-            $('.q4-btn').remove();
         });
     });
 
