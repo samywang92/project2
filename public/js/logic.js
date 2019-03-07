@@ -522,19 +522,22 @@ $(document).ready(function () {
 
            database.ref("/").once("value").then(function (snapshot) {
                if (snapshot.child("question1")) {
-                 
+                 console.log("Found question1");
                } else{
                    database.update({
                        question1: {
-                           choise1:{
+                           laurel:{
                                
-                           },
-                           chose2:{
-
                            }
                        }
                    })
                }
+               database.ref().on("child_added", function(displaySnapshot) {
+                var picLaurel = `<img src="${displaySnapshot.val().laurel.img}" class="vote-icon responsive-img" >`;
+                var picYanny = `<img src="${displaySnapshot.val().yanny.img}" class="vote-icon responsive-img" >`;
+                 $("#questionLaurel").append(picLaurel);
+                 $("#questionYanny").append(picYanny);
+             });
            })
        }
        if (q1Chosen === "yanny") {
@@ -544,13 +547,7 @@ $(document).ready(function () {
        $(".q1-btn").remove();
    });
 
-   database.ref().on("child_added", function(displaySnapshot) {
-    //    console.log("Laurel", displaySnapshot.val().laurel);
-      var picLaurel = `<img src="${displaySnapshot.val().laurel.img}" class="vote-icon responsive-img" >`;
-      var picYanny = `<img src="${displaySnapshot.val().yanny.img}" class="vote-icon responsive-img" >`;
-       $("#questionLaurel").append(picLaurel);
-       $("#questionYanny").append(picYanny);
-   });
+   
 
    /////////////////////////////// question 2 /////////////////////////////////
    $('.q2-btn').click(function (e) {
