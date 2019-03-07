@@ -20,7 +20,7 @@ $(document).ready(function () {
     ///////// avriables /////////////////
     var nickname;
     var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg'];
-    var randomItem = '../images/RandomAnimals_brown_bear.svg';
+    var randomItem = avatarArr[Math.floor(Math.random() * avatarArr.length)];
     var userEmail = "thisIsAnEmail@gmaail.com";
     var stageName;
     var mysqlEmail;
@@ -159,6 +159,8 @@ $(document).ready(function () {
     ////////////////////// this function checks if the user is logged in, if not logged in take to login page ///////////////
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            $("#preloader").removeClass("hide");
+            $("#login-btn").addClass("hide");
             // console.log('user info :' + user.email);
             // console.log('user is Logged In!');
 
@@ -178,11 +180,16 @@ $(document).ready(function () {
         } else {
             // No user is signed in.
             console.log('user not logged in!');
+            $("#preloader").addClass("hide");
+            $("#login-btn").removeClass("hide");
             if (window.location.href === 'http://localhost:3000/') {
                 console.log('you need to login');
 
             } else {
+                //user logged in
                 window.location.href = '../';
+                $("#preloader").removeClass("hide");
+                $("#login-btn").addClass("hide");
             }
 
 
@@ -352,8 +359,8 @@ $(document).ready(function () {
                                                 </div>
                                             </div>
                                             <div class="col s8 m8">
-                                                <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
-                                                <p class=" width: 100%">${snapshot.val().message}</p>
+                                                <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                <p>${snapshot.val().message}</p>
                                             </div>
                         
                                         </div>
@@ -391,7 +398,7 @@ $(document).ready(function () {
                                                     </div>
                                                 </div>
                                                 <div class="col s8 m8">
-                                                    <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                    <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
                                                     <p>${snapshot.val().message}</p>
                                                 </div>
                         
