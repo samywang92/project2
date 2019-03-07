@@ -437,7 +437,7 @@ $(document).ready(function () {
                                 </div>`
 
                             $("#chat-group").append(messageTemplate1);
-                            //TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
+                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
                             window.scrollBy(0, 250);
 
                         }
@@ -527,7 +527,6 @@ $(document).ready(function () {
         });
     });
 
-<<<<<<< HEAD
 
 
 
@@ -535,7 +534,7 @@ $(document).ready(function () {
     ///////////////////////////////////////// animations! /////////////////////////////////////////
     var dly = 0;
     for (i = 0; i < 10; i++) {
-        //TweenLite.from('.animate' + i, .5, { y: 50, opacity: 0, delay: dly });
+        TweenLite.from('.animate' + i, .5, { y: 50, opacity: 0, delay: dly });
         dly += .3;
     }
 
@@ -544,7 +543,6 @@ $(document).ready(function () {
 
 
 
-=======
    // 88888888888888888888888888888  Chat Questions   88888888888888888888888888888
    var q1Laurel = '';
    var q1Yanny = '';
@@ -624,5 +622,4 @@ $(document).ready(function () {
        $('.q4-btn').remove();
    });
    // 88888888888888888888888888888  End Chat Questions   88888888888888888888888888888
->>>>>>> d54988d40b1e9983af3823d3db8e901a53aeda7f
 });
