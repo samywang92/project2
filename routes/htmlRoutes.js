@@ -24,6 +24,12 @@ module.exports = function (app) {
       res.render("profile", {});
     });
   });
+  // Profile page
+  app.get("/quiz", function (req, res) {
+    db.Example.findAll({}).then(function (icebreak_r_test) {
+      res.render("quiz", {});
+    });
+  });
   // Group page
   app.get("/group", function (req, res) {
     db.Example.findAll({}).then(function (icebreak_r_test) {
