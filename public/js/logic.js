@@ -515,10 +515,7 @@ if($("#userMessage").val() !== ""){
 
            database.ref("/").once("value").then(function (snapshot) {
                if (snapshot.child("question1")) {
-                   var tempdb = firebase.database().ref("question1");
-                   tempdb.child("question1").update({
-                       userImages: snapshot.val().picture
-                   })
+                 
                } else{
                    database.update({
                        question1: {
@@ -541,8 +538,11 @@ if($("#userMessage").val() !== ""){
    });
 
    database.ref().on("child_added", function(displaySnapshot) {
-      var pic = `<img src="${displaySnapshot.val().picture}" class="vote-icon responsive-img" >`;
-       $("#questionLaurel").append(pic);
+    //    console.log("Laurel", displaySnapshot.val().laurel);
+      var picLaurel = `<img src="${displaySnapshot.val().laurel.img}" class="vote-icon responsive-img" >`;
+      var picYanny = `<img src="${displaySnapshot.val().yanny.img}" class="vote-icon responsive-img" >`;
+       $("#questionLaurel").append(picLaurel);
+       $("#questionYanny").append(picYanny);
    });
 
    /////////////////////////////// question 2 /////////////////////////////////
