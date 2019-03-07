@@ -164,18 +164,12 @@ var dly;
             // console.log('user info :' + user.email);
             // console.log('user is Logged In!');
 
-            // if (window.location.href === 'http://localhost:3000/option' || window.location.href === 'http://localhost:3000/chat') {
-            //     // console.log('you need to login');
-
-            // } else {
-            //     window.location.href = '../option';
-            // }
             if (window.location.href === "http://localhost:3000/") {
                 window.location.href = '../option';
             }
             mysqlEmail = user.email;
             checkUser(mysqlEmail);
-            localStorage.clear();
+            localStorage.setItem('gotToken', false);
             console.log("first" + mysqlEmail);
         } else {
             // No user is signed in.
@@ -191,8 +185,6 @@ var dly;
                 $("#preloader").removeClass("hide");
                 $("#login-btn").addClass("hide");
             }
-
-
         }
     });
 
@@ -204,6 +196,7 @@ var dly;
         firebase.auth().signOut().then(function () {
             console.log('Sign-out successful.');
             window.location.href = '../';
+            localStorage.clear();
             // Sign-out successful.
         }, function (error) {
             // An error happened.
@@ -372,7 +365,7 @@ var dly;
 
                             window.scrollBy(0, 250);
                             TweenLite.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
-                            dly += 1;
+                            dly += .05;
                         }
 
                     } else {
@@ -439,7 +432,7 @@ var dly;
                             $("#chat-group").append(messageTemplate1);
                             TweenLite.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
                             window.scrollBy(0, 250);
-                            dly += 1;
+                            dly += .05;
                         }
 
 
@@ -461,8 +454,10 @@ var dly;
         }
     }
 
+
     $('#backButton').click(function () {
         window.location.href = '../option';
+        //database = firebase.database();
     });
     var db = firebase.database().ref('/');
     $("body").on("click", "#msg-btn", function () {
@@ -477,16 +472,33 @@ var dly;
         firebase.database().ref("/").once("value").then(function (snapshot) {
             if (snapshot.child(threadName).exists() || snapshot.child(posthreadName).exists()) { // will need to check both dummys with an || statement
                 console.log("IT EXISTS");
-                var ref = firebase.database().ref(threadName);
+                var actThreadName;
+                if(snapshot.child(threadName).exists()){
+                    var ref = firebase.database().ref(threadName);
+                    actThreadName = threadName;
+                    console.log(threadName);
+                }else if (snapshot.child(posthreadName).exists() ){
+                    var ref = firebase.database().ref(posthreadName);
+                    actThreadName = posthreadName;
+                    console.log(posthreadName);
+                }
+                //comment this and ref.push out after testing // remove competely 
+                db = ref;
+                localStorage.setItem('thread', actThreadName);
+                localStorage.setItem('currentUser', currentUser);
+                localStorage.setItem('rUser', user);
+                sendToPrivate();
+                //$(".section").load(location.href+" .section>*","");
+                
                 ref.push({
                     user_id1: currentUser,
                     user_id2: user,
                     message: "tester"
                     //maybe add a field for undreaduser1 and unreaduser2
                 });
-                ref.child("initMessage").update({
-                    user_id4: "foook"
-                });
+                // ref.child("initMessage").update({
+                //     user_id4: "foook"
+                // });
                 //set db ref to this instead of main db
             } else {
                 console.log("IT NOT EXISTS");
@@ -523,13 +535,33 @@ var dly;
                     }
                 );
                 console.log("created.")
+                var ref = firebase.database().ref(threadName);
+                database = ref;
+                //$(".section").load(location.href+" .section>*","");
             }
         });
     });
 
+    function sendToPrivate() {
+        window.location.href = '../privateChat';    
+    }
 
+    // function initiPrivateMsg(){
+    //     db.on("child_added", function (snapshot) {
+    //         console.log(snapshot.val().message);
+    //         console.log("current user"+userID);
+    //         var mytext = `<h> hello world${snapshot.val().message}</h>`
+    //         $(".private-section").append(mytext);
+    //     });
+    // }
 
-
+    // db.on("child_added", function (snapshot) {
+    //     console.log(snapshot.val().message);
+    //     console.log("current user"+userID);
+    //     var mytext = `<h> hello world${snapshot.val().message}</h>`
+    //     $(".private-section").append(mytext);
+    // });
+    
 
     ///////////////////////////////////////// animations! /////////////////////////////////////////
     var dly = 0;
@@ -580,7 +612,14 @@ var dly;
                        }
                    })
                }
-           })
+               database.ref().on("child_added", function(displaySnapshot) {
+                //    console.log("Laurel", displaySnapshot.val().laurel);
+                  var picLaurel = `<img src="${displaySnapshot.val().laurel.img}" class="vote-icon responsive-img" >`;
+                  var picYanny = `<img src="${displaySnapshot.val().yanny.img}" class="vote-icon responsive-img" >`;
+                   $("#questionLaurel").append(picLaurel);
+                   $("#questionYanny").append(picYanny);
+               });
+           });
        }
        if (q1Chosen === "yanny") {
            // grab user email and ID and push it to array
@@ -589,13 +628,7 @@ var dly;
        $(".q1-btn").remove();
    });
 
-   database.ref().on("child_added", function(displaySnapshot) {
-    //    console.log("Laurel", displaySnapshot.val().laurel);
-      var picLaurel = `<img src="${displaySnapshot.val().laurel.img}" class="vote-icon responsive-img" >`;
-      var picYanny = `<img src="${displaySnapshot.val().yanny.img}" class="vote-icon responsive-img" >`;
-       $("#questionLaurel").append(picLaurel);
-       $("#questionYanny").append(picYanny);
-   });
+  
 
    /////////////////////////////// question 2 /////////////////////////////////
    $('.q2-btn').click(function (e) {
