@@ -462,20 +462,22 @@ $(document).ready(function () {
 
     $('#backButton').click(function () {
         window.location.href = '../option';
+        localStorage.setItem("inPrivate", false);
     });
-    var db = firebase.database().ref('/');
+    //var db = firebase.database().ref('/');
     $("body").on("click", "#msg-btn", function () {
         console.log("ENTERED THE VOID");
         console.log(this);
         var user = $(this).attr('data-uid');
         var currentUser = userID;
-        console.log("wtf: "+currentUser);
+        console.log("wtf: " + currentUser);
         var threadName = user + currentUser;
+        var posthreadName = currentUser + user;
         firebase.database().ref("/").once("value").then(function (snapshot) {
             if (snapshot.child(threadName).exists() || snapshot.child(posthreadName).exists()) {
                 console.log("IT EXISTS");
                 var actThreadName;
-                var ref;
+                //var ref;
                 if (snapshot.child(threadName).exists()) {
                     ref = firebase.database().ref(threadName);
                     actThreadName = threadName;
@@ -488,39 +490,49 @@ $(document).ready(function () {
                 localStorage.setItem('thread', actThreadName);
                 localStorage.setItem('currentUser', currentUser);
                 localStorage.setItem('rUser', user);
+                localStorage.setItem('userPicture', UsersPicture);
                 sendToPrivate();
 
                 //comment this and ref.push out after testing // remove competely 
-                db = ref;
-                ref.push({
-                    user_id1: currentUser,
-                    user_id2: user,
-                    message: "tester"
-                    //maybe add a field for undreaduser1 and unreaduser2
-                });
+                // db = ref;
+                // ref.push({
+                //     sender: currentUser,
+                //     message: "tester",
+                //     picture: UsersPicture
+                //     //maybe add a field for undreaduser1 and unreaduser2
+                // });
 
             } else {
                 console.log("IT NOT EXISTS");
-                db.update({
+                firebase.database().ref("/").update({
                     [threadName]: {
                         initMessage: {
-                            user_id1: curentUser,
-                            user_id2: user,
-                            message: "Hello"
+                            sender: currentUser,
+                            message: "Hello",
+                            picture: UsersPicture
                             //maybe add a field for undreaduser1 and unreaduser2
                         }
                     }
                 });
+                var oneOnThread = firebase.database().ref("1on1");
+                oneOnThread.child(currentUser).update({
+                    [threadName]: [threadName]
+                });
+                oneOnThread.child(user).update({
+                    [threadName]: [threadName]
+                });
                 console.log("created.")
-                localStorage.setItem('thread', actThreadName);
+                localStorage.setItem('thread', threadName);
                 localStorage.setItem('currentUser', currentUser);
                 localStorage.setItem('rUser', user);
+                localStorage.setItem('userPicture', UsersPicture);
                 sendToPrivate();
             }
         });
     });
 
     function sendToPrivate() {
+        localStorage.setItem("inPrivate", false);
         window.location.href = '../privateChat';
     }
 
