@@ -13,9 +13,9 @@ module.exports = function (app) {
       res.render("group_chat", {});
     });
   });
-  app.get("/oneVone", function (req, res) {
+  app.get("/privateChat", function (req, res) {
     db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("oneVoneChat", {});
+      res.render("privateChat", {});
     });
   });
   // Profile page
