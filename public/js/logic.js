@@ -430,7 +430,7 @@ $(document).ready(function () {
                                 </div>`
 
                             $("#chat-group").append(messageTemplate1);
-                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
+                            //TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
                             window.scrollBy(0, 250);
 
                         }
@@ -464,15 +464,15 @@ $(document).ready(function () {
         console.log("pls" + UsersPicture)
         console.log(this);
         var user = $(this).attr('data-uid');
-        var curentUser = userID;
-        var threadName = user + curentUser;
+        var currentUser = userID;
+        var threadName = user + currentUser;
         var posthreadName = currentUser + user;
         firebase.database().ref("/").once("value").then(function (snapshot) {
             if (snapshot.child(threadName).exists() || snapshot.child(posthreadName).exists()) { // will need to check both dummys with an || statement
                 console.log("IT EXISTS");
                 var ref = firebase.database().ref(threadName);
                 ref.push({
-                    user_id1: curentUser,
+                    user_id1: currentUser,
                     user_id2: user,
                     message: "tester"
                     //maybe add a field for undreaduser1 and unreaduser2
@@ -486,7 +486,7 @@ $(document).ready(function () {
                 db.update({
                     [threadName]: {
                         initMessage: {
-                            user_id1: curentUser,
+                            user_id1: currentUser,
                             user_id2: user,
                             message: "message"
                             //maybe add a field for undreaduser1 and unreaduser2
@@ -494,15 +494,25 @@ $(document).ready(function () {
                     }
                 });
                 var oneOnThread = firebase.database().ref("1on1");
-                oneOnThread.push(
+                // oneOnThread.update(
+                //     {
+                //         [currentUser]: {
+                //             [threadName]: [threadName]
+                //         },
+                //         [user]: {
+                //             [threadName]: [threadName]
+                //         }
+
+                //     }
+                // );
+                oneOnThread.child(currentUser).update({
+                    [threadName]: [threadName]
+                }
+                    
+                );
+                oneOnThread.child(user).update(
                     {
-                        user_id1: {
-                            [threadName]:  [threadName]
-                        },
-                        user_id2: {
-                            [threadName]:  [threadName]
-                        }
-            
+                        [threadName]: [threadName]
                     }
                 );
                 console.log("created.")
@@ -517,7 +527,7 @@ $(document).ready(function () {
     ///////////////////////////////////////// animations! /////////////////////////////////////////
     var dly = 0;
     for (i = 0; i < 10; i++) {
-        TweenLite.from('.animate' + i, .5, { y: 50, opacity: 0, delay: dly });
+        //TweenLite.from('.animate' + i, .5, { y: 50, opacity: 0, delay: dly });
         dly += .3;
     }
 
