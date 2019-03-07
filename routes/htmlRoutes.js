@@ -13,6 +13,11 @@ module.exports = function (app) {
       res.render("group_chat", {});
     });
   });
+  app.get("/oneVone", function (req, res) {
+    db.Example.findAll({}).then(function (icebreak_r_test) {
+      res.render("oneVoneChat", {});
+    });
+  });
   // Profile page
   app.get("/profile", function (req, res) {
     db.Example.findAll({}).then(function (icebreak_r_test) {
