@@ -36,7 +36,7 @@ $(document).ready(function () {
     var trigger = true;
     var message = "";
     var userID;
-
+var dly;
     //////////// generate random nickname ////////////////////
     var generate = function () {
         $.ajax({
@@ -266,7 +266,7 @@ $(document).ready(function () {
 
     function newMessage() {
         if ($("#userMessage").val() !== "") {
-
+            dly =0;
             navigator.geolocation.getCurrentPosition(showPosition);
             name = "tempName";
             //name = $("#name-input").val();
@@ -370,8 +370,8 @@ $(document).ready(function () {
                             $("#chat-group").append(userMessageTemp1);
 
                             window.scrollBy(0, 250);
-                            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, });
-
+                            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
+                            dly += 1;
                         }
 
                     } else {
@@ -436,9 +436,9 @@ $(document).ready(function () {
                                 </div>`
 
                             $("#chat-group").append(messageTemplate1);
-                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
+                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
                             window.scrollBy(0, 250);
-
+                            dly += 1;
                         }
 
 
