@@ -24,7 +24,7 @@ module.exports = function (app) {
       res.render("profile", {});
     });
   });
-  // Profile page
+  // Quiz page
   app.get("/quiz", function (req, res) {
     db.Example.findAll({}).then(function (icebreak_r_test) {
       res.render("quiz", {});
