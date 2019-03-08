@@ -60,12 +60,14 @@ module.exports = function (app) {
   app.get("/api/users/:uid", function (req, res) {
     db.Post.findOne({
       where: {
-        email: req.params.userID
+        userID: req.params.uid
       }
     })
       .then(function (dbPost) {
         res.json(dbPost);
         console.log('postDB :'+ dbPost)
+      }).catch(function(err) {
+        console.error(err);
       });
   });
 
