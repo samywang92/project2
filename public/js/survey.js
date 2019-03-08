@@ -13,42 +13,110 @@ $(document).ready(function () {
     ];
 
     // Choices for survey questions.
-    var choices = [
-        'a',
-        'b',
-        'c',
-        'd',
-        'e'
+    var choices = [[
+        'Dinner and a show',
+        'Cooking Dinner at Home',
+        'Picnic and Bike Ride in the Park',
+        'Drinks and Dancing at the club',
+    ],
+    [
+        'Early Morning',
+        'Late at Night',
+        'Between Other Tasks',
+        'Whenever Inspiration Hits',
+    ],
+    [
+        'Spend time outdoors',
+        'Relax on the couch',
+        'Have drinks with friends',
+        'Running',
+        'Play video games'
+    ],
+    [
+        'Roaring 20s',
+        'Does beer count as a theme?',
+        'Something based on my latest pinterest spree',
+        'Themes are expensive',
+        'A comic book or cartoon character',
+        'Ugly sweater'
+    ],
+    [
+        'Jogging',
+        'Swimming',
+        'Hiking/Climbing',
+        'Walking',
+    ],
+    [
+        'Night owl - I live for the night!',
+        'The early bird gets the worm!',
+        'I could sleep all day every day if you let me!',
+    ],
+        
     ];
 
-    // Identify div where questions will be inserted and initialize counter to 0.
     var questionDiv = $('#questions');
-    i = 0;
 
-    // For each question, create a div.
-    questions.forEach(function (question) {
-        i++;
-        // Fill that div with a header, the question, and the choices selector.
+
+    for (i = 0; i < questions.length; i++) {
         var item = $('<div class="question">');
         var headline = $('<h4>').text('Question ' + i);
-        var questionText = $('<p>').text(question);
+        var questionText = $('<p>').text(questions[i]);
         var dropDown = $('<div class="form-group">');
         var select = $('<select class="form-control selector">');
-        // Create an option for each choice.
-        choices.forEach(function (choice) {
-            var option = $('<option>').text(choice);
+        // for (j = 0; j < choices.length; j++) {
+        for (k = 0; k < choices[i].length; k++) {
+            var cwc = choices[i]; 
+            var option = $('<option>').text(cwc[k]);
             select.append(option);
-        });
+        }   
         select.attr('id', 'select' + i);
+        console.log(i);
         // Add the dropdown to the item, then add the item to the questions div.
         dropDown.append(select);
         item.append(headline, questionText, dropDown);
         var br = $('<br>');
         questionDiv.append(item, br);
-    });
+        // }
+    }
 
+    // Identify div where questions will be inserted and initialize counter to 0.
+    // var questionDiv = $('#questions');
+    // i = 0;
+
+    // // For each question, create a div.
+    // questions.forEach(function (question) {
+    //     i++;
+    //     // Fill that div with a header, the question, and the choices selector.
+    //     var item = $('<div class="question">');
+    //     var headline = $('<h4>').text('Question ' + i);
+    //     var questionText = $('<p>').text(question);
+    //     var dropDown = $('<div class="form-group">');
+    //     var select = $('<select class="form-control selector">');
+    //     // Create an option for each choice.
+    //     choices.forEach(function (choice) {
+
+    //         var option = $('<option>').text(choice[i]);
+
+    //         select.append(option);
+    //     });
+    //     select.attr('id', 'select' + i);
+    //     // Add the dropdown to the item, then add the item to the questions div.
+    //     dropDown.append(select);
+    //     item.append(headline, questionText, dropDown);
+    //     var br = $('<br>');
+    //     questionDiv.append(item, br);
+    // });
+    ///////////////    Push user info to mysql     /////////////// 
+    // function submitPost(Post) {
+    //     $.put("/api/posts/", Post, function () {
+    //         window.location.href = '../option';
+    //     });
+    // }
+    currentUser = localStorage.getItem("currentUser");
+    console.log(currentUser);
     // Event handler for when the form is submitted.
     $('#submit').on('click', function (event) {
+        // submitPost(userEmail);
 
         // Prevent reload.
         event.preventDefault();
