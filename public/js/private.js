@@ -150,8 +150,6 @@ function displayMessage(snapshot) {
             window.scrollBy(0, 250);
             dly += 1;
         }
-
-
     }
 
     var elems = document.querySelectorAll('.fixed-action-btn');
