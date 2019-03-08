@@ -60,12 +60,14 @@ module.exports = function (app) {
   app.get("/api/users/:uid", function (req, res) {
     db.Post.findOne({
       where: {
-        email: req.params.userID
+        userID: req.params.uid
       }
     })
       .then(function (dbPost) {
         res.json(dbPost);
         console.log('postDB :'+ dbPost)
+      }).catch(function(err) {
+        console.error(err);
       });
   });
 
@@ -98,11 +100,22 @@ module.exports = function (app) {
   });
 
   // PUT route for updating posts
+  // app.put("/api/posts", function (req, res) {
+  //   db.Post.update(req.body,
+  //     {
+  //       where: {
+  //         id: req.body.id
+  //       }
+  //     })
+  //     .then(function (dbPost) {
+  //       res.json(dbPost);
+  //     });
+  // });
   app.put("/api/posts", function (req, res) {
     db.Post.update(req.body,
       {
         where: {
-          id: req.body.id
+          email: req.body.email
         }
       })
       .then(function (dbPost) {
