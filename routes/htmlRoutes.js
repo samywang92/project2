@@ -3,50 +3,34 @@ var db = require("../models");
 module.exports = function (app) {
   // Load login page
   app.get("/", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("login", {});
-    });
+    res.render("login", {});
   });
   // Chat page
   app.get("/chat", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("group_chat", {});
-    });
+    res.render("group_chat", {});
   });
   app.get("/privateChat", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("privateChat", {});
-    });
+    res.render("privateChat", {});
   });
   // Profile page
   app.get("/profile", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("profile", {});
-    });
+    res.render("profile", {});
   });
   // Profile page
   app.get("/quiz", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("quiz", {});
-    });
+    res.render("quiz", {});
   });
   // Group page
   app.get("/group", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("group", {});
-    });
+    res.render("group", {});
   });
   // socializing options page
   app.get("/option", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("socializing", {});
-    });
+    res.render("socializing", {});
   });
   // Chat questions test page
   app.get("/questions", function (req, res) {
-    db.Example.findAll({}).then(function (icebreak_r_test) {
-      res.render("questions", {});
-    });
+    res.render("questions", {});
   });
   
 
