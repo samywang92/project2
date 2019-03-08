@@ -73,7 +73,7 @@ $(document).ready(function () {
 
             var newPost = {
                 actualName: result.user.displayName,
-                displayName: "testinging",
+                displayName: nickname,
                 email: result.user.email,
                 picture: randomItem,
                 userID: result.user.uid
