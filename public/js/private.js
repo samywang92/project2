@@ -31,6 +31,7 @@ $(document).ready(function () {
         });
     }
 
+    //this part actually might not be used but leaving for the sake of demo day and not breaking code//
     if (localStorage.getItem(inPrivate)) {
         database.on("child_added", function (snapshot) {
             var key = snapshot.ref.key;
@@ -163,3 +164,4 @@ $(document).ready(function () {
     }
 
 });
+

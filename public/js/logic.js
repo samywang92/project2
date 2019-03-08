@@ -23,7 +23,10 @@ $(document).ready(function () {
         messagingSenderId: "827145488194"
     };
 
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config);
+    }
+    
     // Create a variable to reference the database.
     var database = firebase.database();
 
