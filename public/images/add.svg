@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 101.9 101.9" style="enable-background:new 0 0 101.9 101.9;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:url(#Combined-Shape_1_);}
+</style>
+<circle class="st0" cx="50.9" cy="50.9" r="50.1"/>
+<linearGradient id="Combined-Shape_1_" gradientUnits="userSpaceOnUse" x1="-158.0856" y1="260.7144" x2="-157.0776" y2="261.7224" gradientTransform="matrix(25 0 0 -25 3990.4775 6581.3994)">
+	<stop  offset="0" style="stop-color:#66FDCA"/>
+	<stop  offset="1" style="stop-color:#51B9FE"/>
+</linearGradient>
+<path id="Combined-Shape" class="st1" d="M49.4,49.4h-11v3h11v11h3v-11h11v-3h-11v-11h-3V49.4z"/>
+</svg>
