@@ -16,7 +16,7 @@ module.exports = function (app) {
   app.get("/profile", function (req, res) {
     res.render("profile", {});
   });
-  // Profile page
+  // Quiz page
   app.get("/quiz", function (req, res) {
     res.render("quiz", {});
   });
