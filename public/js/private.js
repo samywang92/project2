@@ -1,6 +1,5 @@
 $(document).ready(function () {
     M.AutoInit();
-
     // Global Variables //
     var threadTarget = localStorage.getItem('thread');
     var currentUser = localStorage.getItem('currentUser');
@@ -8,6 +7,7 @@ $(document).ready(function () {
     var userPicture = localStorage.getItem('userPicture');
     var inPrivate = false;
     var dly;
+    var database;
 
     // On load store variables //
     window.onload = function () {

@@ -1,12 +1,14 @@
 $(document).ready(function () {
     M.AutoInit();
+    //Global Variables//
     var uid = localStorage.getItem("currentUser");
     var hasInbox = false;
     var rUser;
     var rUserPicture;
     var threadName;
+    var database;
 
-
+    //Function for onload of inbox//
     window.onload = function () {
         console.log(uid);
         console.log("WE HERE BOIS");
@@ -20,7 +22,7 @@ $(document).ready(function () {
 
     }
 
-
+    //Function to create threads//
     function createThreads() {
         console.log(uid);
         console.log(hasInbox);
@@ -43,6 +45,7 @@ $(document).ready(function () {
         }
     }
 
+    //Function to draw icons//
     function drawIcons(picture, userName, threadName) {
         var template = `<div class ="center-align" style="border-radius: 50%;  height: 4em; width: 4em; display:inline-block; margin-right: .5em;">
     <!-- Avatar -->
@@ -52,6 +55,7 @@ $(document).ready(function () {
         $(".inbox-bar").append(template);
     }
 
+    //Function on click of an icon//
     $("body").on("click", ".inbox-thread", function () {
         console.log("VOID MASTER ENTERED");
         var self = this;
