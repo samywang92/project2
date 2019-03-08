@@ -1,16 +1,17 @@
 // Global Variables //
 var threadTarget = localStorage.getItem('thread');
 var currentUser = localStorage.getItem('currentUser');
-var rUser = localStorage.getItem('rUser');
+var username = localStorage.getItem('name');
 var userPicture = localStorage.getItem('userPicture');
 var inPrivate = false;
+var dly;
 
 // On load store variables //
 window.onload = function () {
     console.log("omega lul");
     console.log(threadTarget);
     console.log(currentUser);
-    console.log(rUser);
+    console.log(username);
     $(".section").attr("id", threadTarget);
     database = firebase.database().ref(threadTarget);
     inPrivate = localStorage.setItem("inPrivate", true);
@@ -61,21 +62,102 @@ function newMessage() {
         var newMessage = {
             sender: currentUser,
             message: message,
-            //email: chatEmail,
+            name: username,
             picture: userPicture
         };
         console.log(newMessage);
 
         database.push(newMessage);
-        //initiPrivateMsg();
-        //trigger = false;
         $("#userMessage").val("");
     }
 }
 
 // Functions to output messages with styling by taking in a snapshot
 function displayMessage(snapshot) {
-    var mytext = `<h>Message : ${snapshot.val().message}</h> <br>`;
-    $(`#${threadTarget}`).append(mytext);
+
+    if (snapshot.val().sender === currentUser) {
+        // console.log('they match');
+
+        if (window.location.href === 'http://localhost:3000/privateChat') {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+
+            var userMessageTemp1 = ` <div id="chat-box" class="row too-chat chatAnimateLeft ${text}">
+            <div class="col s12">
+                <div class="card horizontal">
+                    <div class="card-content">
+                        <div class="">
+                            <div class="col s4 m4">
+                                <div class="card-image">
+                                    <img src="${snapshot.val().picture}" >
+                                </div>
+                            </div>
+                            <div class="col s8 m8">
+                                <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                <p>${snapshot.val().message}</p>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`
+            $(`#${threadTarget}`).append(userMessageTemp1);
+
+            window.scrollBy(0, 250);
+            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
+            dly += 1;
+        }
+
+    } else {
+        // console.log('no match');
+        if (window.location.href === 'http://localhost:3000/privateChat') {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (var i = 0; i < 5; i++) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+
+            var messageTemplate1 = // ` <div id="chat-box"> <div class="row from-chat"> <div class="col s12"> <div class="card horizontal"> <div class="card-content"> <div class=""> <div class="col s3 m3" style= "margin-left: -1.5em; margin-right: 10px"> <div style=" height: 3.5em; width: 3.5em; "> <img src="${snapshot.val().picture}" style="width: 100%;"> </div> </div> <div class="col s9 m9"> <p style="color: #386895; font-size: 10px;">${snapshot.val().name}</p> <p>${snapshot.val().message}</p> </div> </div> </div> <div class="card-stacked"> <div class="fixed-action-btn"> <a class="btn-floating btn-medium red"> <i class="large material-icons">dehaze</i> </a> <ul style="margin-right: -2em;"> <li> <a class="btn-floating btn-small red"> <i class="material-icons">error</i> </a> </li> <li> <a class="btn-floating btn-small yellow darken-1"> <i class="material-icons">thumb_down</i> </a> </li> <li> <a class="btn-floating btn-small green"> <i class="material-icons">thumb_up</i> </a> </li> <li> <a class="btn-floating btn-small blue"> <i class="material-icons">textsms</i> </a> </li> </ul> </div> </div> </div> </div> </div>`
+                ` <div id="chat-box" class="chatAnimate ${text}">
+            <div class="row from-chat">
+                <div class="col s12">
+                    <div class="card horizontal">
+                        <div class="card-content">
+                            <div class="">
+                                <div class="col s4 m4">
+                                    <div class="card-image">
+                                        <img src="${snapshot.val().picture}" style="width: 100%;">
+                                    </div>
+                                </div>
+                                <div class="col s8 m8">
+                                    <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                    <p>${snapshot.val().message}</p>
+                                </div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+
+            $(`#${threadTarget}`).append(messageTemplate1);
+            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
+            window.scrollBy(0, 250);
+            dly += 1;
+        }
+
+
+    }
+
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+        direction: 'left'
+    });
+    M.AutoInit();
 }
 

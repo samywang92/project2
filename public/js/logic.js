@@ -489,7 +489,7 @@ $(document).ready(function () {
                 }
                 localStorage.setItem('thread', actThreadName);
                 localStorage.setItem('currentUser', currentUser);
-                localStorage.setItem('rUser', user);
+                localStorage.setItem('name', Usersnickname);
                 localStorage.setItem('userPicture', UsersPicture);
                 sendToPrivate();
 
@@ -524,7 +524,7 @@ $(document).ready(function () {
                 console.log("created.")
                 localStorage.setItem('thread', threadName);
                 localStorage.setItem('currentUser', currentUser);
-                localStorage.setItem('rUser', user);
+                localStorage.setItem('name', Usersnickname);
                 localStorage.setItem('userPicture', UsersPicture);
                 sendToPrivate();
             }
