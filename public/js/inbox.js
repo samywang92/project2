@@ -46,10 +46,10 @@ function createThreads() {
 }
 
 function drawIcons(picture, userName, threadName) {
-    var template = `<div class ="valign center" style="border-radius: 50%;  height: 4em; width: 4em; display:inline-block; margin-right: .5em;">
+    var template = `<div class ="center-align" style="border-radius: 50%;  height: 4em; width: 4em; display:inline-block; margin-right: .5em;">
     <!-- Avatar -->
-    <img class="valign center inbox-thread" src="${picture}" id="${threadName}" alt="Avatar" style="width: 100%; transform: scale(1.1);">
-    <p class="valign center inbox-thread" id="${threadName}" style='margin-top: -.05em'>${userName}</p>
+    <img class="center-align inbox-thread" src="${picture}" id="${threadName}" alt="Avatar" style="width: 100%; transform: scale(1.1);">
+    <p class="center-align inbox-thread" id="${threadName}" style='margin-top: -.05em'>${userName}</p>
     </div>`;
     $(".inbox-bar").append(template);
 }
