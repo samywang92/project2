@@ -1,26 +1,44 @@
 <div id="quiz-page" style="background: linear-gradient(to right, rgb(107, 205, 235) ,rgb(3, 110, 180)); height: 100vh;">
-    <nav class="transparent z-depth-0">
-        <div class="nav-wrapper" style="background: linear-gradient(to right, rgb(107, 205, 235) ,rgb(3, 110, 180));">
-            <!-- <a href="#" class="brand-logo center">Icebreak-r</a>
-            <ul id="nav-mobile" class="left ">
-                <li><a href="sass.html"></a></li>
-            </ul> -->
+    <h1 class="center-align " style="font-size: 15px; color: white">IceBreak-r</h1>
+    <div class="main-container #fafafa grey lighten-5"
+        style="margin-top: 7em; min-height: 100vh; padding-bottom: .5em;">
+        <div class="z-depth-3"
+            style="border-radius: 50%; overflow: hidden; height: 8em; width: 8em;margin-top: -5em; position: absolute;left: 50%;margin-left: -4.5em;">
+            <!-- Avatar -->
+            <img class="avator" src="./images/RandomAnimals_panda.svg" alt="Avatar"
+                style="width: 100%; transform: scale(1.1)">
         </div>
-    </nav>
-    <div>
-
-        <div class="container">
-            <div class="row">
-                <div class="center">
-                    <img src="images/loginimage.png" class="responsive-img">
-                </div>
-                <h4 class="center white-text">Sign up and start chatting</h4>
-            </div>
-
-
+        <div class="spacer" style="height: 2.8em;"> </div>
+        <div class="userInfo">
+            <!-- UserInfo -->
+            <p id="displayName" class="center-align ">User Name</p>
+            <p id="actualName" class="center-align " style="margin-top:-15px; color: turquoise; font-size: 10px;">aka
+                <span id="actualName" style="font-size: 13px;color: black;"> hello</span> </p>
         </div>
+        <h3>Survey Questions</h3>
+        <hr>
+        <form>
+            <!-- Questions will be inserted here. -->
+            <div id="questions"></div>
+            <br>
+            <br>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn waves-effect waves-light light-blue" id="submit">Submit</button>
+
+            <br><br>
+            <br><br>
+
+
+        </form>
+    </div>
+
+</div>
+
+{{!-- <div>
 
         <div id="interact-5c80ace2dd4c5700146c9a75"></div>
         <script
             type="text/javascript">var app_5c80ace2dd4c5700146c9a75; (function (d, t) { var s = d.createElement(t), options = { "appId": "5c80ace2dd4c5700146c9a75", "aspect_ratio": "100%", "async": true, "host": "quiz.tryinteract.com", "no_cover": true, "footer": "show" }; s.src = 'https://i.tryinteract.com/embed/app.js'; s.onload = s.onreadystatechange = function () { var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return; try { app_5c80ace2dd4c5700146c9a75 = new InteractApp(); app_5c80ace2dd4c5700146c9a75.initialize(options); app_5c80ace2dd4c5700146c9a75.display(); } catch (e) { } }; var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr); })(document, 'script');</script>
-    </div>
+    </div> --}}
+</div>
