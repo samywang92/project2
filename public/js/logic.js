@@ -107,6 +107,7 @@ $(document).ready(function () {
     ///////////////    Push user info to mysql     /////////////// 
     function submitPost(Post) {
         $.post("/api/posts/", Post, function () {
+            localStorage.setItem('currentUser', currentUser);
             window.location.href = '../option';
         });
     }
@@ -175,7 +176,7 @@ $(document).ready(function () {
             }
             mysqlEmail = user.email;
             checkUser(mysqlEmail);
-            localStorage.clear();
+            localStorage.setItem("gotToken", false);
         } else {
             // No user is signed in.
             console.log('user not logged in!');
@@ -517,10 +518,16 @@ $(document).ready(function () {
                 });
                 var oneOnThread = firebase.database().ref("1on1");
                 oneOnThread.child(currentUser).update({
-                    [threadName]: [threadName]
+                    [threadName]: {
+                        threadName: [threadName],
+                        chatwith: user
+                    }
                 });
                 oneOnThread.child(user).update({
-                    [threadName]: [threadName]
+                    [threadName]: {
+                        threadName: [threadName],
+                        chatwith: currentUser
+                    }
                 });
                 console.log("created.")
                 localStorage.setItem('thread', threadName);
