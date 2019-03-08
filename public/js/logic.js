@@ -203,6 +203,7 @@ $(document).ready(function () {
         firebase.auth().signOut().then(function () {
             console.log('Sign-out successful.');
             window.location.href = '../';
+            localStorage.clear();
             // Sign-out successful.
         }, function (error) {
             // An error happened.
