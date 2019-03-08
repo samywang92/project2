@@ -57,6 +57,17 @@ module.exports = function (app) {
       });
   });
 
+  app.get("/api/users/:uid", function (req, res) {
+    db.Post.findOne({
+      where: {
+        email: req.params.userID
+      }
+    })
+      .then(function (dbPost) {
+        res.json(dbPost);
+        console.log('postDB :'+ dbPost)
+      });
+  });
 
   // POST route for saving a new post
   app.post("/api/posts", function (req, res) {

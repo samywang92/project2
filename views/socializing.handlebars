@@ -1,5 +1,5 @@
-<div style="background: linear-gradient(to right, #66FDCA ,#51B9FE); height: 100% width: 100%; overflow: hidden;">
-    <h1 class="center-align " style="font-size: 15px; color: white">IceBreaker</h1>
+<div style="background: linear-gradient(to right, rgb(107, 205, 235) ,rgb(3, 110, 180)); height: 100% width: 100%; overflow: hidden;">
+    <h1 class="center-align " style="font-size: 15px; color: white">IceBreak-r</h1>
     <div class="main-container #fafafa grey lighten-5" style="margin-top: 7em; min-height: 100vh; padding-bottom: .5em;">
         <div class="z-depth-3" style="border-radius: 50%; overflow: hidden; height: 8em; width: 8em;margin-top: -5em; position: absolute;left: 50%;margin-left: -4.5em;">
             <!-- Avatar -->
@@ -23,10 +23,10 @@
             <div class="row" style="  border-bottom: 3px solid #fafafa ; ">
                 <p class="center-align">Messages</p>
 
-                <div class="row" style="padding-left: 10px;padding-right: 10px;  overflow: auto; white-space: nowrap;">
+                <div class="row inbox-bar" style="padding-left: 10px;padding-right: 10px;  overflow: auto; white-space: nowrap;">
                     <div style="border-radius: 50%; overflow: hidden; height: 4em; width: 4em; display:inline-block; margin-right: .5em;  ">
                         <!-- Avatar -->
-                        <img src="./images/detective.png" alt="Avatar" style="width: 100%; transform: scale(1.1); ">
+                        <img src="./images/detective.png" alt="Avatar" id="test-ava" style="width: 100%; transform: scale(1.1); ">
                     </div>
                     <div style="border-radius: 50%; overflow: hidden; height: 4em; width: 4em; display:inline-block;  margin-right: .5em;   ">
                         <!-- Avatar -->
@@ -52,7 +52,7 @@
 
         <!-- Group form -->
         <div id="groupButton" class="container #ffffff white z-depth-1 animate2" style="min-height: 12em; padding-top: 1em; color: #386895; ">
-            <div style="border-radius: 50%; overflow: hidden; height: 7em; width: 7em; margin: auto ">
+            <div  style="border-radius: 50%; overflow: hidden; height: 7em; width: 7em; margin: auto ">
                 <!-- Avatar -->
                 <img src="./images/groupforum.png" alt="Avatar" style="width: 100%; transform: scale(1.1)">
             </div>
@@ -83,7 +83,7 @@
             <div class="row" style="  border-bottom: 3px solid #fafafa ; ">
                 <p class="center-align">Solo Search</p>
                 <p class="center-align" style="padding-left: 15px; padding-right: 15px; font-size: 10px; margin-top: -10px;">
-                    Answer a few questions and get matched with the purr-fect matcj
+                    Answer a few questions and get matched with the purr-fect match
                 </p>
             </div>
             <div class="row" style=" margin-top: -1.5em;">
@@ -132,3 +132,6 @@
 
     </div>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./js/inbox.js"></script>

@@ -4,11 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {{!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"> --}}
   <!-- Materialize Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://s0.2mdn.net/ads/studio/cached_libs/tweenmax_1.18.0_499ba64a23378545748ff12d372e59e9_min.js"></script>
-
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
   <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
 
   <!--Import Google Icon Font-->
@@ -19,10 +17,11 @@
 
 <body>
   {{{body}}}
-  
-  
+
+
 </body>
 {{!-- ==================================== --}}
+<<<<<<< HEAD
   <!-- Materialize Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   {{!-- jQuery should go here? --}}
@@ -30,14 +29,22 @@
   {{!-- <script src="./js/fireBaseConfig.js"></script> --}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="./js/logic.js"></script>
+=======
+<!-- Materialize Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+{{!-- jQuery should go here? --}}
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/logic.js"></script>
+>>>>>>> ff58a692a87fb4c183ff77a6e68d0d5d5e172b7a
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.fixed-action-btn');
-      var instances = M.FloatingActionButton.init(elems, {
-        direction: 'left',
-        hoverEnabled: false
-      });
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {
+      direction: 'left',
+      hoverEnabled: false
     });
-  </script>
+  });
+</script>
 
 </html>

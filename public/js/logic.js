@@ -19,8 +19,8 @@ $(document).ready(function () {
 
     ///////// avriables /////////////////
     var nickname;
-    var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg'];
-    var randomItem = '../images/RandomAnimals_brown_bear.svg';
+    var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg', '../images/RandomAnimals_dog.svg', '../images/RandomAnimals_dolphin.svg', '../images/RandomAnimals_elephant.svg', '../images/RandomAnimals_fox.svg', '../images/RandomAnimals_gariffe.svg', '../images/RandomAnimals_hedgehog.svg', '../images/RandomAnimals_kangaroo.svg', '../images/RandomAnimals_killer_whale.svg', '../images/RandomAnimals_kowala.svg', '../images/RandomAnimals_lion.svg', '../images/RandomAnimals_lioness.svg', '../images/RandomAnimals_merecat.svg', '../images/RandomAnimals_ox.svg', '../images/RandomAnimals_panda.svg', '../images/RandomAnimals_polar_bear.svg', '../images/RandomAnimals_rhyno.svg', '../images/RandomAnimals_tiger.svg', '../images/RandomAnimals_walrus.svg', '../images/RandomAnimals_zebra.svg'];
+    var randomItem = avatarArr[Math.floor(Math.random() * avatarArr.length)];
     var userEmail = "thisIsAnEmail@gmaail.com";
     var stageName;
     var mysqlEmail;
@@ -36,7 +36,7 @@ $(document).ready(function () {
     var trigger = true;
     var message = "";
     var userID;
-
+    var dly;
     //////////// generate random nickname ////////////////////
     var generate = function () {
         $.ajax({
@@ -72,7 +72,11 @@ $(document).ready(function () {
 
             var newPost = {
                 actualName: result.user.displayName,
+<<<<<<< HEAD
                 displayName: "Very Happy Bananas",
+=======
+                displayName: "testinging",
+>>>>>>> ff58a692a87fb4c183ff77a6e68d0d5d5e172b7a
                 email: result.user.email,
                 picture: randomItem,
                 userID: result.user.uid
@@ -107,6 +111,7 @@ $(document).ready(function () {
     ///////////////    Push user info to mysql     /////////////// 
     function submitPost(Post) {
         $.post("/api/posts/", Post, function () {
+            localStorage.setItem('currentUser', currentUser);
             window.location.href = '../option';
         });
     }
@@ -159,6 +164,8 @@ $(document).ready(function () {
     ////////////////////// this function checks if the user is logged in, if not logged in take to login page ///////////////
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            $("#preloader").removeClass("hide");
+            $("#login-btn").addClass("hide");
             // console.log('user info :' + user.email);
             // console.log('user is Logged In!');
 
@@ -173,15 +180,20 @@ $(document).ready(function () {
             }
             mysqlEmail = user.email;
             checkUser(mysqlEmail);
-            localStorage.clear();
+            localStorage.setItem("gotToken", false);
         } else {
             // No user is signed in.
             console.log('user not logged in!');
+            $("#preloader").addClass("hide");
+            $("#login-btn").removeClass("hide");
             if (window.location.href === 'http://localhost:3000/') {
                 console.log('you need to login');
 
             } else {
+                //user logged in
                 window.location.href = '../';
+                $("#preloader").removeClass("hide");
+                $("#login-btn").addClass("hide");
             }
 
 
@@ -196,6 +208,7 @@ $(document).ready(function () {
         firebase.auth().signOut().then(function () {
             console.log('Sign-out successful.');
             window.location.href = '../';
+            localStorage.clear();
             // Sign-out successful.
         }, function (error) {
             // An error happened.
@@ -258,33 +271,33 @@ $(document).ready(function () {
     });
 
     function newMessage() {
-if($("#userMessage").val() !== ""){
-         
-        navigator.geolocation.getCurrentPosition(showPosition);
-        name = "tempName";
-        //name = $("#name-input").val();
-        message = $("#userMessage").val();
-        /////// Use form ong / lat for testing purpouses comments////
-        // mylat = $("#lat-input").val();
-        // mylon = $("#long-input").val();
-        console.log(message);
+        if ($("#userMessage").val() !== "") {
+            dly = 0;
+            navigator.geolocation.getCurrentPosition(showPosition);
+            name = "tempName";
+            //name = $("#name-input").val();
+            message = $("#userMessage").val();
+            /////// Use form ong / lat for testing purpouses comments////
+            // mylat = $("#lat-input").val();
+            // mylon = $("#long-input").val();
+            console.log(message);
 
-        var newUser = {
-            name: Usersnickname,
-            message: message,
-            lon: mylon,
-            lat: mylat,
-            email: chatEmail,
-            picture: UsersPicture,
-            uid: userID
-        };
+            var newUser = {
+                name: Usersnickname,
+                message: message,
+                lon: mylon,
+                lat: mylat,
+                email: chatEmail,
+                picture: UsersPicture,
+                uid: userID
+            };
 
-        database.ref().push(newUser);
-        // Code for handling the push
-        displayMessage();
-        trigger = false;
-        $("#userMessage").val("");
-    }
+            database.ref().push(newUser);
+            // Code for handling the push
+            displayMessage();
+            trigger = false;
+            $("#userMessage").val("");
+        }
     }
 
     ///////////////////////// calc distance ///////////////////////////
@@ -351,8 +364,8 @@ if($("#userMessage").val() !== ""){
                                                 </div>
                                             </div>
                                             <div class="col s8 m8">
-                                                <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
-                                                <p class=" width: 100%">${snapshot.val().message}</p>
+                                                <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                <p>${snapshot.val().message}</p>
                                             </div>
                         
                                         </div>
@@ -363,8 +376,8 @@ if($("#userMessage").val() !== ""){
                             $("#chat-group").append(userMessageTemp1);
 
                             window.scrollBy(0, 250);
-                            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, });
-
+                            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
+                            dly += 1;
                         }
 
                     } else {
@@ -390,7 +403,7 @@ if($("#userMessage").val() !== ""){
                                                     </div>
                                                 </div>
                                                 <div class="col s8 m8">
-                                                    <p style="min-width: 50px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
+                                                    <p style="min-width: 280px; color: #386895; font-size: 10px;">${snapshot.val().name}</p>
                                                     <p>${snapshot.val().message}</p>
                                                 </div>
                         
@@ -429,9 +442,9 @@ if($("#userMessage").val() !== ""){
                                 </div>`
 
                             $("#chat-group").append(messageTemplate1);
-                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, });
+                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
                             window.scrollBy(0, 250);
-
+                            dly += 1;
                         }
 
 
@@ -455,56 +468,195 @@ if($("#userMessage").val() !== ""){
 
     $('#backButton').click(function () {
         window.location.href = '../option';
+        localStorage.setItem("inPrivate", false);
     });
-    var db = firebase.database().ref('/');
+    //var db = firebase.database().ref('/');
     $("body").on("click", "#msg-btn", function () {
         console.log("ENTERED THE VOID");
         console.log(this);
         var user = $(this).attr('data-uid');
-        var curentUser = userID;
-        var threadName = user + curentUser;
+        var currentUser = userID;
+        console.log("wtf: " + currentUser);
+        var threadName = user + currentUser;
+        var posthreadName = currentUser + user;
         firebase.database().ref("/").once("value").then(function (snapshot) {
-            if (snapshot.child(threadName).exists()) { // will need to check both dummys with an || statement
+            if (snapshot.child(threadName).exists() || snapshot.child(posthreadName).exists()) {
                 console.log("IT EXISTS");
-                var ref = firebase.database().ref(threadName);
-                ref.push({
-                    user_id1: curentUser,
-                    user_id2: user,
-                    message: "tester"
-                    //maybe add a field for undreaduser1 and unreaduser2
-                });
-                //set db ref to this instead of main db
+                var actThreadName;
+                //var ref;
+                if (snapshot.child(threadName).exists()) {
+                    ref = firebase.database().ref(threadName);
+                    actThreadName = threadName;
+                    console.log(threadName);
+                } else if (snapshot.child(posthreadName).exists()) {
+                    ref = firebase.database().ref(posthreadName);
+                    actThreadName = posthreadName;
+                    console.log(posthreadName);
+                }
+                localStorage.setItem('thread', actThreadName);
+                localStorage.setItem('currentUser', currentUser);
+                localStorage.setItem('name', Usersnickname);
+                localStorage.setItem('userPicture', UsersPicture);
+                sendToPrivate();
+
+                //comment this and ref.push out after testing // remove competely 
+                // db = ref;
+                // ref.push({
+                //     sender: currentUser,
+                //     message: "tester",
+                //     picture: UsersPicture
+                //     //maybe add a field for undreaduser1 and unreaduser2
+                // });
+
             } else {
                 console.log("IT NOT EXISTS");
-                db.update({
+                firebase.database().ref("/").update({
                     [threadName]: {
                         initMessage: {
-                            user_id1: curentUser,
-                            user_id2: user,
-                            message: "message"
+                            sender: currentUser,
+                            message: "Hello",
+                            picture: UsersPicture
                             //maybe add a field for undreaduser1 and unreaduser2
                         }
                     }
                 });
+                var oneOnThread = firebase.database().ref("1on1");
+                oneOnThread.child(currentUser).update({
+                    [threadName]: {
+                        threadName: [threadName],
+                        chatwith: user
+                    }
+                });
+                oneOnThread.child(user).update({
+                    [threadName]: {
+                        threadName: [threadName],
+                        chatwith: currentUser
+                    }
+                });
                 console.log("created.")
+                localStorage.setItem('thread', threadName);
+                localStorage.setItem('currentUser', currentUser);
+                localStorage.setItem('name', Usersnickname);
+                localStorage.setItem('userPicture', UsersPicture);
+                sendToPrivate();
             }
         });
     });
 
-
-
-
-
-    ///////////////////////////////////////// animations! /////////////////////////////////////////
-    var dly = 0;
-    for (i = 0; i < 10; i++) {
-        TweenLite.from('.animate' + i, .5, { y: 50, opacity: 0, delay: dly });
-        dly += .3;
+    function sendToPrivate() {
+        localStorage.setItem("inPrivate", false);
+        window.location.href = '../privateChat';
     }
 
+    // 88888888888888888888888888888  Chat Questions   88888888888888888888888888888
+    var q1Laurel = '';
+    var q1Yanny = '';
+    var q2Selection = '';
+    var q3Selection = '';
+    var q4Selection = '';
+
+    /////////////////////////////// question 1 /////////////////////////////////
+
+    var laurelArry = [];
+    var yannyArry = [];
+    var yannyCounter = 0;
+    var laurelCounter = 0;
+    // Print any Yanny people
+    database.ref("question1/yanny").on("child_added", function (displaySnapshot) {
+        yannyCounter++;
+        yannyArry.push(displaySnapshot.val());
+        // Using the User email to reference mySQL database to provide image associated with their email
+        $.get("/api/posts/" + displaySnapshot.val(), function (data) {
+            // console.log("data Stored in mysql :", data.displayName);
+            //email = "moore8577@gmail.com";
+            if (UsersPicture === undefined) {
+                UsersPicture = "../images/missingIMG-01.svg";
+            } else {
+                UsersPicture = data.picture;
+            }
+            // chatEmail = data.email;
+
+
+            var picYanny = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
+            $("#questionYanny").append(picYanny);
+
+        });
+
+    });
+
+    database.ref("question1/laurel").on("child_added", function (displaySnapshot) {
+        laurelCounter++;
+        laurelArry.push(displaySnapshot.val());
+        // Using the User email to reference mySQL database to provide image associated with their email
+        $.get("/api/posts/" + displaySnapshot.val(), function (data) {
+          
+            if (UsersPicture === undefined) {
+                UsersPicture = "../images/missingIMG-01.svg";
+            } else {
+                UsersPicture = data.picture;
+            }
+            // chatEmail = data.email;
+
+
+            var picLaurel = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
+            $("#questionLaurel").append(picLaurel);
+
+        });
+
+    });
+
+    $("#laurel").click(function (e) {
+        e.preventDefault();
+        console.log("chatEmail: "+ chatEmail);
+
+        if (laurelArry.indexOf(chatEmail) > -1 || laurelArry.indexOf(chatEmail) > -1) {
+            console.log('you already choose ');
+        } else {
+            database.ref('question1/laurel').update({
+                [laurelCounter]: chatEmail
+            });
+        }
+    });
+
+
+    $("#yanny").click(function (e) {
+        e.preventDefault();
+        console.log("chatEmail: "+ chatEmail);
+
+        if (laurelArry.indexOf(chatEmail) > -1 || yannyArry.indexOf(chatEmail) > -1) {
+            console.log('you already choose ');
+        } else {
+            database.ref('question1/yanny').update({
+                [yannyCounter]: chatEmail
+            });
+        }
+    });
 
 
 
+    /////////////////////////////// question 2 /////////////////////////////////
+    $('.q2-btn').click(function (e) {
+        e.preventDefault();
+        // set the selected value
+        q2Selection = $(this).text();
+        console.log(q2Selection);
+        // remove the ability to change answer
+        $('.q2-btn').remove();
+    })
+    /////////////////////////////// question 3 /////////////////////////////////
+    $('.q3-btn').click(function (e) {
+        e.preventDefault();
+        q3Selection = $(this).text();
+        console.log(q3Selection);
+        $('.q3-btn').remove();
+    })
 
-
+    /////////////////////////////// question 4 /////////////////////////////////
+    $('.q4-btn').click(function (e) {
+        e.preventDefault();
+        q4Selection = $(this).text();
+        console.log(q4Selection);
+        $('.q4-btn').remove();
+    });
+    // 88888888888888888888888888888  End Chat Questions   88888888888888888888888888888
 });

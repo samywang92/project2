@@ -1,6 +1,6 @@
 <div id="chat-page" style="overflow: hidden">
 
-    <div class="section" id="chat-group">
+    <div class="section" id="">
 
 
     </div>
@@ -11,7 +11,7 @@
             class="material-icons">arrow_back</i></a>
 
     <div id="chat-group" style="padding-bottom: 8em;">
-
+        {{!-- ask jp why this chat-group id is reused here --}}
 
         <div class="form" style="z-index: 9999;">
             <div class="row" id="chat-input">
@@ -19,7 +19,7 @@
                     <input type="text" id="userMessage" class="autocomplete">
                 </div>
                 <div class="input-field col s2">
-                    <a id="sendMessage"
+                    <a id="send-private"
                         class="btn-floating btn-medium waves-effect waves-light #00e5ff cyan accent-3"><i
                             class="material-icons">message</i></a>
                 </div>
@@ -30,3 +30,6 @@
 
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./js/private.js"></script>
