@@ -23,10 +23,6 @@ window.onload = function () {
 }
 
 
-$("#test-ava").on("click", function (event) {
-
-});
-
 function createThreads() {
     console.log(uid);
     console.log(hasInbox);
@@ -56,6 +52,11 @@ function drawIcons(picture, userName) {
     </div>`;
     $(".inbox-bar").append(template);
 }
+
+$("#test-ava").on("click", function (event) {
+
+});
+
 //then write to the index bar
 //search through firebase to find in 1:1 to see if UID exists
 //if exists create circles bases off of how many nodes there are
