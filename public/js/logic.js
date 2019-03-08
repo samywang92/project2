@@ -558,101 +558,105 @@ $(document).ready(function () {
     var yannyCounter = 0;
     var laurelCounter = 0;
     // Print any Yanny people
-    database.ref("question1/yanny").on("child_added", function (displaySnapshot) {
-        yannyCounter++;
-        yannyArry.push(displaySnapshot.val());
-        // Using the User email to reference mySQL database to provide image associated with their email
-        $.get("/api/posts/" + displaySnapshot.val(), function (data) {
-            // console.log("data Stored in mysql :", data.displayName);
-            //email = "moore8577@gmail.com";
-            if (UsersPicture === undefined) {
-                UsersPicture = "../images/missingIMG-01.svg";
-            } else {
-                UsersPicture = data.picture;
-            }
-            // chatEmail = data.email;
+    if (initFB) {
 
 
-            var picYanny = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
-            $("#questionYanny").append(picYanny);
+        database.ref("question1/yanny").on("child_added", function (displaySnapshot) {
+            yannyCounter++;
+            yannyArry.push(displaySnapshot.val());
+            // Using the User email to reference mySQL database to provide image associated with their email
+            $.get("/api/posts/" + displaySnapshot.val(), function (data) {
+                // console.log("data Stored in mysql :", data.displayName);
+                //email = "moore8577@gmail.com";
+                if (UsersPicture === undefined) {
+                    UsersPicture = "../images/missingIMG-01.svg";
+                } else {
+                    UsersPicture = data.picture;
+                }
+                // chatEmail = data.email;
+
+
+                var picYanny = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
+                $("#questionYanny").append(picYanny);
+
+            });
 
         });
 
-    });
+        database.ref("question1/laurel").on("child_added", function (displaySnapshot) {
+            laurelCounter++;
+            laurelArry.push(displaySnapshot.val());
+            // Using the User email to reference mySQL database to provide image associated with their email
+            $.get("/api/posts/" + displaySnapshot.val(), function (data) {
 
-    database.ref("question1/laurel").on("child_added", function (displaySnapshot) {
-        laurelCounter++;
-        laurelArry.push(displaySnapshot.val());
-        // Using the User email to reference mySQL database to provide image associated with their email
-        $.get("/api/posts/" + displaySnapshot.val(), function (data) {
-          
-            if (UsersPicture === undefined) {
-                UsersPicture = "../images/missingIMG-01.svg";
-            } else {
-                UsersPicture = data.picture;
-            }
-            // chatEmail = data.email;
+                if (UsersPicture === undefined) {
+                    UsersPicture = "../images/missingIMG-01.svg";
+                } else {
+                    UsersPicture = data.picture;
+                }
+                // chatEmail = data.email;
 
 
-            var picLaurel = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
-            $("#questionLaurel").append(picLaurel);
+                var picLaurel = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
+                $("#questionLaurel").append(picLaurel);
+
+            });
 
         });
 
-    });
+        $("#laurel").click(function (e) {
+            e.preventDefault();
+            console.log("chatEmail: " + chatEmail);
 
-    $("#laurel").click(function (e) {
-        e.preventDefault();
-        console.log("chatEmail: "+ chatEmail);
-
-        if (laurelArry.indexOf(chatEmail) > -1 || laurelArry.indexOf(chatEmail) > -1) {
-            console.log('you already choose ');
-        } else {
-            database.ref('question1/laurel').update({
-                [laurelCounter]: chatEmail
-            });
-        }
-    });
+            if (laurelArry.indexOf(chatEmail) > -1 || laurelArry.indexOf(chatEmail) > -1) {
+                console.log('you already choose ');
+            } else {
+                database.ref('question1/laurel').update({
+                    [laurelCounter]: chatEmail
+                });
+            }
+        });
 
 
-    $("#yanny").click(function (e) {
-        e.preventDefault();
-        console.log("chatEmail: "+ chatEmail);
+        $("#yanny").click(function (e) {
+            e.preventDefault();
+            console.log("chatEmail: " + chatEmail);
 
-        if (laurelArry.indexOf(chatEmail) > -1 || yannyArry.indexOf(chatEmail) > -1) {
-            console.log('you already choose ');
-        } else {
-            database.ref('question1/yanny').update({
-                [yannyCounter]: chatEmail
-            });
-        }
-    });
+            if (laurelArry.indexOf(chatEmail) > -1 || yannyArry.indexOf(chatEmail) > -1) {
+                console.log('you already choose ');
+            } else {
+                database.ref('question1/yanny').update({
+                    [yannyCounter]: chatEmail
+                });
+            }
+        });
 
 
 
-    /////////////////////////////// question 2 /////////////////////////////////
-    $('.q2-btn').click(function (e) {
-        e.preventDefault();
-        // set the selected value
-        q2Selection = $(this).text();
-        console.log(q2Selection);
-        // remove the ability to change answer
-        $('.q2-btn').remove();
-    })
-    /////////////////////////////// question 3 /////////////////////////////////
-    $('.q3-btn').click(function (e) {
-        e.preventDefault();
-        q3Selection = $(this).text();
-        console.log(q3Selection);
-        $('.q3-btn').remove();
-    })
+        /////////////////////////////// question 2 /////////////////////////////////
+        $('.q2-btn').click(function (e) {
+            e.preventDefault();
+            // set the selected value
+            q2Selection = $(this).text();
+            console.log(q2Selection);
+            // remove the ability to change answer
+            $('.q2-btn').remove();
+        })
+        /////////////////////////////// question 3 /////////////////////////////////
+        $('.q3-btn').click(function (e) {
+            e.preventDefault();
+            q3Selection = $(this).text();
+            console.log(q3Selection);
+            $('.q3-btn').remove();
+        })
 
-    /////////////////////////////// question 4 /////////////////////////////////
-    $('.q4-btn').click(function (e) {
-        e.preventDefault();
-        q4Selection = $(this).text();
-        console.log(q4Selection);
-        $('.q4-btn').remove();
-    });
-    // 88888888888888888888888888888  End Chat Questions   88888888888888888888888888888
+        /////////////////////////////// question 4 /////////////////////////////////
+        $('.q4-btn').click(function (e) {
+            e.preventDefault();
+            q4Selection = $(this).text();
+            console.log(q4Selection);
+            $('.q4-btn').remove();
+        });
+        // 88888888888888888888888888888  End Chat Questions   88888888888888888888888888888
+    }
 });
