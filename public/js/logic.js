@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     ///////// avriables /////////////////
     var nickname;
-    var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg'];
+    var avatarArr = ['../images/astronaut.png', '../images/detective.png', '../images/diver.png', '../images/RandomAnimals_brown_bear.svg', '../images/RandomAnimals_dog.svg', '../images/RandomAnimals_dolphin.svg', '../images/RandomAnimals_elephant.svg', '../images/RandomAnimals_fox.svg', '../images/RandomAnimals_gariffe.svg', '../images/RandomAnimals_hedgehog.svg', '../images/RandomAnimals_kangaroo.svg', '../images/RandomAnimals_killer_whale.svg', '../images/RandomAnimals_kowala.svg', '../images/RandomAnimals_lion.svg', '../images/RandomAnimals_lioness.svg', '../images/RandomAnimals_merecat.svg', '../images/RandomAnimals_ox.svg', '../images/RandomAnimals_panda.svg', '../images/RandomAnimals_polar_bear.svg', '../images/RandomAnimals_rhyno.svg', '../images/RandomAnimals_tiger.svg', '../images/RandomAnimals_walrus.svg', '../images/RandomAnimals_zebra.svg'];
     var randomItem = avatarArr[Math.floor(Math.random() * avatarArr.length)];
     var userEmail = "thisIsAnEmail@gmaail.com";
     var stageName;
@@ -546,44 +546,79 @@ $(document).ready(function () {
 
     /////////////////////////////// question 1 /////////////////////////////////
 
-    $(".q1-btn").click(function (e) {
+    var laurelArry = [];
+    var yannyArry = [];
+    var yannyCounter = 0;
+    var laurelCounter = 0;
+    // Print any Yanny people
+    database.ref("question1/yanny").on("child_added", function (displaySnapshot) {
+        yannyCounter++;
+        yannyArry.push(displaySnapshot.val());
+        // Using the User email to reference mySQL database to provide image associated with their email
+        $.get("/api/posts/" + displaySnapshot.val(), function (data) {
+            // console.log("data Stored in mysql :", data.displayName);
+            //email = "moore8577@gmail.com";
+            if (UsersPicture === undefined) {
+                UsersPicture = "../images/missingIMG-01.svg";
+            } else {
+                UsersPicture = data.picture;
+            }
+            // chatEmail = data.email;
+
+
+            var picYanny = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
+            $("#questionYanny").append(picYanny);
+
+        });
+
+    });
+
+    database.ref("question1/laurel").on("child_added", function (displaySnapshot) {
+        laurelCounter++;
+        laurelArry.push(displaySnapshot.val());
+        // Using the User email to reference mySQL database to provide image associated with their email
+        $.get("/api/posts/" + displaySnapshot.val(), function (data) {
+          
+            if (UsersPicture === undefined) {
+                UsersPicture = "../images/missingIMG-01.svg";
+            } else {
+                UsersPicture = data.picture;
+            }
+            // chatEmail = data.email;
+
+
+            var picLaurel = `<img src="${UsersPicture}" class="vote-icon responsive-img" >`;
+            $("#questionLaurel").append(picLaurel);
+
+        });
+
+    });
+
+    $("#laurel").click(function (e) {
         e.preventDefault();
+        console.log("chatEmail: "+ chatEmail);
 
-        // store information from questions
-        var q1Chosen = $(this).attr("value");
-        console.log(q1Chosen + " was selected")
-        //add to selected answer array
-        if (q1Chosen === "laurel") {
-            // grab user email and ID and push it to array
-            // $.get("/api/posts" + mysqlEmail, function (data) {
-            //     UsersPicture = data.picture;
-            // });
-
-            database.ref("/").once("value").then(function (snapshot) {
-                if (snapshot.child("question1")) {
-                    console.log("Found question1");
-                } else {
-                    database.update({
-                        question1: {
-                            laurel: {
-
-                            }
-                        }
-                    })
-                }
-                database.ref().on("child_added", function (displaySnapshot) {
-                    var picLaurel = `<img src="${displaySnapshot.val().laurel.img}" class="vote-icon responsive-img" >`;
-                    var picYanny = `<img src="${displaySnapshot.val().yanny.img}" class="vote-icon responsive-img" >`;
-                    $("#questionLaurel").append(picLaurel);
-                    $("#questionYanny").append(picYanny);
-                });
-            })
+        if (laurelArry.indexOf(chatEmail) > -1 || laurelArry.indexOf(chatEmail) > -1) {
+            console.log('you already choose ');
+        } else {
+            database.ref('question1/laurel').update({
+                [laurelCounter]: chatEmail
+            });
         }
-        if (q1Chosen === "yanny") {
-            // grab user email and ID and push it to array
+    });
+
+
+    $("#yanny").click(function (e) {
+        e.preventDefault();
+        console.log("chatEmail: "+ chatEmail);
+
+        if (laurelArry.indexOf(chatEmail) > -1 || yannyArry.indexOf(chatEmail) > -1) {
+            console.log('you already choose ');
+        } else {
+            database.ref('question1/yanny').update({
+                [yannyCounter]: chatEmail
+            });
         }
-        // remove the ability to change answer
-        $(".q1-btn").remove();
     });
 
 
