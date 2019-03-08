@@ -67,6 +67,7 @@ $(document).ready(function () {
             stageName = user.displayName;
             userID = user.uid;
             console.log(user.uid);
+            localStorage.setItem('currentUser', userID);
             // checkUserBeforeCreating(result.user.email);
 
 
