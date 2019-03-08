@@ -78,7 +78,7 @@ function displayMessage(snapshot) {
     if (snapshot.val().sender === currentUser) {
         // console.log('they match');
 
-        if (window.location.href === 'http://localhost:3000/privateChat') {
+        if (window.location.href === window.location.origin+"/privateChat") {
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -115,7 +115,7 @@ function displayMessage(snapshot) {
 
     } else {
         // console.log('no match');
-        if (window.location.href === 'http://localhost:3000/privateChat') {
+        if (window.location.href === window.location.origin+"/privateChat") {
             var text = "";
             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 

@@ -3,13 +3,24 @@ $(document).ready(function () {
 
 
     /////////////// Firebase stuff /////////////
+    //JP//
+    // var config = {
+    //     apiKey: "AIzaSyCRJr6G6YJvC5nDaJgopuiXh-9qbsG8Wu0",
+    //     authDomain: "chat-bf734.firebaseapp.com",
+    //     databaseURL: "https://chat-bf734.firebaseio.com",
+    //     projectId: "chat-bf734",
+    //     storageBucket: "chat-bf734.appspot.com",
+    //     messagingSenderId: "436211675000"
+    // };
+
+    //SAM//
     var config = {
-        apiKey: "AIzaSyCRJr6G6YJvC5nDaJgopuiXh-9qbsG8Wu0",
-        authDomain: "chat-bf734.firebaseapp.com",
-        databaseURL: "https://chat-bf734.firebaseio.com",
-        projectId: "chat-bf734",
-        storageBucket: "chat-bf734.appspot.com",
-        messagingSenderId: "436211675000"
+        apiKey: "AIzaSyAJrSMaEd6MDUlnffqvTO6uYFEs8AEnImc",
+        authDomain: "chattest-f8d71.firebaseapp.com",
+        databaseURL: "https://chattest-f8d71.firebaseio.com",
+        projectId: "chattest-f8d71",
+        storageBucket: "chattest-f8d71.appspot.com",
+        messagingSenderId: "827145488194"
     };
 
     firebase.initializeApp(config);
@@ -172,7 +183,7 @@ $(document).ready(function () {
             // } else {
             //     window.location.href = '../option';
             // }
-            if (window.location.href === "http://localhost:3000/") {
+            if (window.location.href === window.location.origin + "/") {
                 window.location.href = '../option';
             }
             mysqlEmail = user.email;
@@ -183,7 +194,7 @@ $(document).ready(function () {
             console.log('user not logged in!');
             $("#preloader").addClass("hide");
             $("#login-btn").removeClass("hide");
-            if (window.location.href === 'http://localhost:3000/') {
+            if (window.location.href === window.location.origin + "/") {
                 console.log('you need to login');
 
             } else {
@@ -342,7 +353,7 @@ $(document).ready(function () {
                     if (snapshot.val().email === chatEmail) {
                         // console.log('they match');
 
-                        if (window.location.href === 'http://localhost:3000/chat') {
+                        if (window.location.href === window.location.origin + "/chat") {
                             var text = "";
                             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -379,7 +390,7 @@ $(document).ready(function () {
 
                     } else {
                         // console.log('no match');
-                        if (window.location.href === 'http://localhost:3000/chat') {
+                        if (window.location.href === window.location.origin + "/chat") {
                             var text = "";
                             var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
