@@ -7,7 +7,7 @@ $(document).ready(function () {
     var userPicture = localStorage.getItem('userPicture');
     var inPrivate = false;
     var dly;
-    var database;
+    var database = firebase.database().ref();
 
     // On load store variables //
     window.onload = function () {
