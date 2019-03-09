@@ -29,17 +29,18 @@ $(document).ready(function () {
         if (hasInbox) {
             database = firebase.database().ref(`1on1/${uid}`);
             database.on("child_added", function (snapshot) {
-                console.log("tn" + snapshot.val().threadName);
+                console.log("tn: " + snapshot.val().threadName);
                 console.log("chatwith" + snapshot.val().chatwith);
-                threadName = snapshot.val().threadName;
+                //threadName = snapshot.val().threadName;
                 var chatwith = snapshot.val().chatwith;
                 console.log("VOID" + chatwith);
                 $.get("/api/users/" + chatwith, function (data) {
                     //console.log("sql data"+data);
                     rUser = data.displayName;
                     rUserPicture = data.picture;
+                    console.log("tn in api call: " + snapshot.val().threadName);
                     console.log(`receiving: ${rUser} picture: ${rUserPicture}`);
-                    drawIcons(rUserPicture, rUser, threadName);
+                    drawIcons(rUserPicture, rUser, snapshot.val().threadName);
                 });
             });
         }
@@ -47,6 +48,7 @@ $(document).ready(function () {
 
     //Function to draw icons//
     function drawIcons(picture, userName, threadName) {
+        console.log("thread name in draw icon: "+ threadName);
         var template = `<div class ="center-align" style="border-radius: 50%;  height: 4em; width: 4em; display:inline-block; margin-right: .5em;">
     <!-- Avatar -->
     <img class="center-align inbox-thread" src="${picture}" id="${threadName}" alt="Avatar" style="width: 100%; transform: scale(1.1);">
