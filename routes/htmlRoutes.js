@@ -32,7 +32,10 @@ module.exports = function (app) {
   app.get("/questions", function (req, res) {
     res.render("questions", {});
   });
-  
+   // Chat questions test page
+   app.get("/signup", function (req, res) {
+    res.render("signup", {});
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {

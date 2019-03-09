@@ -117,7 +117,9 @@ $(document).ready(function () {
     // Event handler for when the form is submitted.
     $('#submit').on('click', function (event) {
         // submitPost(userEmail);
+        $.put('/api/posts', function (req, res) {
 
+        });
         // Prevent reload.
         event.preventDefault();
 
