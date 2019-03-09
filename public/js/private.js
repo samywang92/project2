@@ -9,9 +9,9 @@ $(document).ready(function () {
     var dly;
     var database;
 
-    if (window.attachEvent) { window.attachEvent('onload', onload); }
-    else if (window.addEventListener) { window.addEventListener('load', onload, false); }
-    else { document.addEventListener('load', onload, false); }
+    $(window).load(function() {
+        onload();
+    });
 
     // On load store variables //
     function onload() {
