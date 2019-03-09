@@ -52,10 +52,10 @@ $(document).ready(function () {
         var template = `<div class ="center-align" style="border-radius: 50%;  height: 4em; width: 4em; display:inline-block; margin-right: .5em;">
     <!-- Avatar -->
     <img class="center-align inbox-thread" src="${picture}" id="${threadName}" alt="Avatar" style="width: 100%; transform: scale(1.1);">
-    <p class="center-align inbox-thread" id="${threadName}" style='margin-top: -.05em'>${userName}</p>
     </div>`;
         $(".inbox-bar").append(template);
     }
+    //<p class="center-align inbox-thread" id="${threadName}" style='margin-top: -.05em'>${userName}</p>
 
     //Function on click of an icon//
     $("body").on("click", ".inbox-thread", function () {
