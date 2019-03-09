@@ -390,8 +390,8 @@ $(document).ready(function () {
                         </div>`
                             $("#chat-group").append(userMessageTemp1);
 
-                            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
                             TweenMax.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
+                            window.scrollBy(0,300);
                             dly += .01;
                         }
 
@@ -458,7 +458,7 @@ $(document).ready(function () {
 
                             $("#chat-group").append(messageTemplate1);
                             TweenMax.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
-                            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+                            window.scrollBy(0,300);
                             dly += .01;
                         }
 
