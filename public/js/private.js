@@ -9,17 +9,7 @@ $(window).load(function () {
     var dly;
     var database;
 
-    // if (window.attachEvent) { window.attachEvent('onload', onload); }
-    // else if (window.addEventListener) { window.addEventListener('load', onload, false); }
-    // else { document.addEventListener('load', onload, false); }
-
-    // $( document ).load(function() {
-    //     Run code
-    //     onload();
-    // });
-    onload();
-    // On load store variables //
-    function onload() {
+    window.onload = function () {
         console.log("omega lul");
         console.log(threadTarget);
         console.log(currentUser);
