@@ -1,4 +1,4 @@
-$(window).load(function () {
+$(document).ready(function () {
     M.AutoInit();
     // Global Variables //
     var threadTarget = localStorage.getItem('thread');
@@ -9,6 +9,7 @@ $(window).load(function () {
     var dly;
     var database;
 
+    // On load store variables //
     window.onload = function () {
         console.log("omega lul");
         console.log(threadTarget);

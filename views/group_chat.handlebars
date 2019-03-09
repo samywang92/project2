@@ -1,4 +1,4 @@
-<div id="chat-page" style="overflow: hidden; min-height: 100vh">
+<div id="chat-page" style="overflow: hidden">
 
     <div class="section" id="chat-group">
 
@@ -6,44 +6,23 @@
     </div>
     <!-- recieved Chat -->
 
-    <a id="backButton" class="btn-floating btn-medium waves-effect waves-light blue" style="position:fixed; top: 0; left: 0;  margin-top:1em; margin-left: 1em;"><i
+    <a id="backButton" class="btn-floating btn-medium waves-effect waves-light blue"
+        style="position:fixed; top: 0; left: 0;  margin-top:1em; margin-left: 1em;"><i
             class="material-icons">arrow_back</i></a>
 
+    <div id="chat-group" style="padding-bottom: 8em;">
 
-    
-  <div id="preloader-chat" class="preloader-wrapper big active" style="position: fixed;  position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;">
-    <div class="spinner-layer spinner-blue-only ">
-      <div class="circle-clipper left">
-        <div class="circle"></div>
-      </div><div class="gap-patch">
-        <div class="circle"></div>
-      </div><div class="circle-clipper right">
-        <div class="circle"></div>
-      </div>
-    </div>
-  </div> 
-
-
-    <div id="chat-group" style="padding-bottom: 8em;" >
- 
 
         <div class="form" style="z-index: 9999;">
             <div class="row" id="chat-input">
                 <div class="input-field col s10">
                     <input type="text" id="userMessage" class="autocomplete">
                 </div>
-                <div class="input-field col s2 ">
-                    <a id="sendMessage" class="btn-floating btn-medium waves-effect waves-light #00e5ff cyan accent-3"><i
-                            class="material-icons ">message</i></a>
-                            
+                <div class="input-field col s2">
+                    <a id="sendMessage"
+                        class="btn-floating btn-medium waves-effect waves-light #00e5ff cyan accent-3"><i
+                            class="material-icons">message</i></a>
                 </div>
-               
 
             </div>
         </div>
