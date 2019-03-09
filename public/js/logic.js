@@ -341,7 +341,7 @@ $(document).ready(function () {
     function displayMessage() {
         if (trigger) {
             database.ref().on("child_added", function (snapshot) {
-
+                $('#preloader-chat').addClass('hide');
                 /////// calc distance ///////
                 distance(mylat, mylon, snapshot.val().lat, snapshot.val().lon, "M");
 
