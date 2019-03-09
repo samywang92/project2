@@ -9,9 +9,14 @@ $(document).ready(function () {
     var dly;
     var database;
 
-    $(window).load(function() {
-        onload();
-    });
+    if (window.attachEvent) { window.attachEvent('onload', onload); }
+    else if (window.addEventListener) { window.addEventListener('load', onload, false); }
+    else { document.addEventListener('load', onload, false); }
+
+    // $( document ).load(function() {
+    //     Run code
+    //     onload();
+    // });
 
     // On load store variables //
     function onload() {
