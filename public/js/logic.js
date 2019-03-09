@@ -561,7 +561,7 @@ $(document).ready(function () {
     function sendToPrivate() {
         localStorage.setItem("inPrivate", false);
         window.location.href = '../privateChat';
-        database = firebase.database().ref(localStorage.getItem('thread'));
+        //database = firebase.database().ref(localStorage.getItem('thread'));
     }
 
     // 88888888888888888888888888888  Chat Questions   88888888888888888888888888888
