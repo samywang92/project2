@@ -9,8 +9,17 @@ $(document).ready(function () {
     var dly;
     var database;
 
+    if (window.attachEvent) { window.attachEvent('onload', onload); }
+    else if (window.addEventListener) { window.addEventListener('load', onload, false); }
+    else { document.addEventListener('load', onload, false); }
+
+    // $( document ).load(function() {
+    //     Run code
+    //     onload();
+    // });
+    
     // On load store variables //
-    window.onload = function () {
+    function onload() {
         console.log("omega lul");
         console.log(threadTarget);
         console.log(currentUser);

@@ -341,7 +341,11 @@ $(document).ready(function () {
     function displayMessage() {
         if (trigger) {
             database.ref().on("child_added", function (snapshot) {
+             
 
+               
+                $('#preloader-chat').addClass('hide');
+               
                 /////// calc distance ///////
                 distance(mylat, mylon, snapshot.val().lat, snapshot.val().lon, "M");
 
@@ -386,9 +390,9 @@ $(document).ready(function () {
                         </div>`
                             $("#chat-group").append(userMessageTemp1);
 
-                            window.scrollBy(0, 250);
-                            TweenLite.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
-                            dly += 1;
+                            TweenMax.from('.' + text, .5, { x: 200, opacity: 0, delay: dly });
+                            window.scrollBy(0,300);
+                            dly += .01;
                         }
 
                     } else {
@@ -453,9 +457,9 @@ $(document).ready(function () {
                                 </div>`
 
                             $("#chat-group").append(messageTemplate1);
-                            TweenLite.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
-                            window.scrollBy(0, 250);
-                            dly += 1;
+                            TweenMax.from('.' + text, .5, { x: -200, opacity: 0, delay: dly });
+                            window.scrollBy(0,300);
+                            dly += .01;
                         }
 
 
@@ -557,6 +561,7 @@ $(document).ready(function () {
     function sendToPrivate() {
         localStorage.setItem("inPrivate", false);
         window.location.href = '../privateChat';
+        //database = firebase.database().ref(localStorage.getItem('thread'));
     }
 
     // 88888888888888888888888888888  Chat Questions   88888888888888888888888888888
