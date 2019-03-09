@@ -91,3 +91,6 @@ html, body {
   height: 100%;
   background: linear-gradient(to right, rgb(107, 205, 235) ,rgb(3, 110, 180));
 }
+.spinner-layer {
+  color: white ;
+}
